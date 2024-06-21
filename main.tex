@@ -1,0 +1,61 @@
+\documentclass{book}
+
+\usepackage[ngerman]{babel}
+\babeltags{german=ngerman}
+
+\usepackage{hyperref}
+
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsthm}
+
+\usepackage{tikz}
+\usetikzlibrary{automata,positioning,shapes.multipart}
+
+\usepackage{thmtools}
+\declaretheorem[name=Definition,style=definition,numberwithin=section]{definition}
+\declaretheorem[name=Bemerkung,style=definition,sibling=definition]{remark}
+\declaretheorem[name=Notation,style=definition,sibling=definition]{notation}
+\declaretheorem[sibling=definition]{theorem}
+\declaretheorem[name=Beispiel,style=definition,sibling=definition]{example}
+\declaretheorem[sibling=definition]{lemma}
+
+\usepackage{enumitem}
+
+\usepackage{authorchapters}
+
+\title{Zusammengetragene studentische Lösungen}
+\author{FSI LA-INF}
+
+\begin{document}
+\maketitle
+\tableofcontents
+\chapter{Vorwort}
+\section{Aufbau und Motivation}
+Ziel dieses Dokuments und des zugehörigen Repositorys ist es, eine studentische
+Sammlung an Lösungsvorschlägen zu den Aufgaben vergangener 1. Staatsexamen im
+Fach Informatik in Bayern zu erstellen. Wir wollen dadurch kooperative und
+nachhaltige Vorbereitung fördern. Da wir leider kein Urheberrecht an den
+Aufgabenstellungen haben, können wir diese jedoch nicht veröffentlichen. Wir
+bitten um Verständnis.
+
+Als Ausgleich dafür soll diese Sammlung auch einen Überblick über die
+Themenbereiche der Informatik geben, die in den Staatsexamen abgefragt werden.
+Dabei soll idealerweise eine Sammlung an Definitionen, Algorithmen, Sätzen und
+Ähnlichem entstehen, die potenziell mit eigens erstellten Beispielen ergänzt
+werden.
+
+\sectionwithauthor[author={Max Ole Elliger},email={ole.elliger@fau.de}]{Mitmachen}
+Wir freuen uns selbstverständlich über jede Art von Beitrag. Sei es das Hinzufügen von Lösungen,
+das Korrigieren von Fehlern oder das Ergänzen von Inhalten in den
+Themenbereichen. Ausführliche Informationen zum Mitwirken lassen sich auf
+\href{https://github.com/fsi-la-inf/stex-stuff}{Github} finden.
+
+Wir möchten übrigens auch die Möglichkeit geben, eigene Lösungsvorschläge für
+Aufgaben mit den eigenen Autor-Informationen zu versehen. Dies sieht man
+beispielsweise an diesem Unterkapitel. Dies ist aber komplett optional!
+
+\input{themes}
+\input{sol}
+
+\end{document}
