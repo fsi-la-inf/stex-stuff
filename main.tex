@@ -1,5 +1,9 @@
 \documentclass{book}
 
+\usepackage{imakeidx}
+\makeindex
+\newcommand{\Index}[1]{\emph{#1\index{#1}}}
+
 \usepackage[ngerman]{babel}
 \babeltags{german=ngerman}
 
@@ -58,4 +62,5 @@ beispielsweise an diesem Unterkapitel. Dies ist aber komplett optional!
 \input{themes}
 \input{sol}
 
+\printindex{}
 \end{document}
