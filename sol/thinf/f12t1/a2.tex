@@ -1,0 +1,50 @@
+\subsubsectionwithauthor[author={Max Ole Elliger},email={ole.elliger@fau.de}]{Aufgabe 2}
+
+Schreibe zunächst die Überführungsfunktion von $M$ tabelarisch auf:
+
+\begin{center}
+\begin{tabular}{|c|c|c|c|}
+	\hline
+	$\delta$ & $a$ & $b$ & final? \\
+	\hline
+	$q_0$ & $q_0,q_2,q_3$ & $q_3$ & ja \\
+	\hline
+	$q_1$ & & & ja \\
+	\hline
+	$q_2$ & $q_1$ & & ja \\
+	\hline
+	$q_3$ & $q_0$ & $q_4$ & nein \\
+	\hline
+	$q_4$ & $q_0,q_2,q_3$ & & nein \\
+	\hline
+\end{tabular}
+\end{center}
+
+Baue nun einen DFA $M'$ mit $L(M) = L(M')$. Dazu ergibt sich folgende
+Überführungsfunktion $\delta'$:
+
+\begin{center}
+\begin{tabular}{|c|c|c|c|}
+	\hline
+	$\delta'$ & $a$ & $b$ & final? \\
+	\hline
+	$\{q_0\}$ & $\{q_0,q_2,q_3\}$ & $\{q_3\}$ & ja \\
+	\hline
+	$\{q_0,q_2,q_3\}$ & $\{q_0,q_1,q_2,q_3\}$ & $\{q_3,q_4\}$ & ja \\
+	\hline
+	$\{q_3\}$ & $\{q_0\}$ & $\{q_4\}$ & nein \\
+	\hline
+	$\{q_0,q_1,q_2,q_3\}$ & $\{q_0,q_1,q_2,q_3\}$ & $\{q_3,q_4\}$ & ja \\
+	\hline
+	$\{q_3,q_4\}$ & $\{q_0,q_2,q_3\}$ & $\{q_4\}$ & nein \\
+	\hline
+	$\{q_4\}$ & $\{q_0,q_2,q_3\}$ & $\emptyset$ & nein \\
+	\hline
+	$\emptyset$ & $\emptyset$ & $\emptyset$ & nein \\
+	\hline
+\end{tabular}
+\end{center}
+
+Die restlichen definierenden Elemente von $M'$ ergeben sich ebenfalls aus der
+tabellarischen Darstellung. Insbesondere ist $\{q_0\}$ der Startzustand von
+$M'$.
