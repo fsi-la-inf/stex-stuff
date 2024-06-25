@@ -1,13 +1,13 @@
 *  @motrellin
 
-themes/aud/  @fsi-la-inf/stex-stuff/review/aud
-themes/db/  @fsi-la-inf/stex-stuff/review/db
-themes/ddi/  @fsi-la-inf/stex-stuff/review/ddi
-themes/sosy/  @fsi-la-inf/stex-stuff/review/sosy
-themes/thinf/  @fsi-la-inf/stex-stuff/review/thinf
+themes/aud/  @fsi-la-inf/review-aud
+themes/db/  @fsi-la-inf/review-db
+themes/ddi/  @fsi-la-inf/review-ddi
+themes/sosy/  @fsi-la-inf/review-sosy
+themes/thinf/  @fsi-la-inf/review-thinf
 
-sol/aud/  @fsi-la-inf/stex-stuff/review/aud
-sol/db/  @fsi-la-inf/stex-stuff/review/db
-sol/ddi/  @fsi-la-inf/stex-stuff/review/ddi
-sol/sosy/  @fsi-la-inf/stex-stuff/review/sosy
-sol/thinf/  @fsi-la-inf/stex-stuff/review/thinf
+sol/aud/  @fsi-la-inf/review-aud
+sol/db/  @fsi-la-inf/review-db
+sol/ddi/  @fsi-la-inf/review-ddi
+sol/sosy/  @fsi-la-inf/review-sosy
+sol/thinf/  @fsi-la-inf/review-thinf
