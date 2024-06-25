@@ -1,0 +1,13 @@
+*  @motrellin
+
+themes/aud/  @fsi-la-inf/aud
+themes/db/  @fsi-la-inf/db
+themes/ddi/  @fsi-la-inf/ddi
+themes/sosy/  @fsi-la-inf/sosy
+themes/thinf/  @fsi-la-inf/thinf
+
+sol/aud/  @fsi-la-inf/aud
+sol/db/  @fsi-la-inf/db
+sol/ddi/  @fsi-la-inf/ddi
+sol/sosy/  @fsi-la-inf/sosy
+sol/thinf/  @fsi-la-inf/thinf
