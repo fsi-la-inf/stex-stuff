@@ -1,0 +1,64 @@
+\subsubsectionwithauthor[author={Max Ole Elliger},email={ole.elliger@fau.de}]{Aufgabe 1}
+
+Definiere zunächst
+\begin{align*}
+	A_1 & := \{ (i,t) \in \Nat \times \Nat \,|\, M_i \text{ hält auf Eingabe
+	i nicht innerhalb von t Schritten } \} \\
+	A_2 & := \{ (i,x) \in \Nat \times \Nat \,|\, M_i \text{ hält nicht auf
+	die Eingabe } x\} \\
+	A_3 & := \{ i \in \Nat \,|\, M_i \text{ berechnet } f
+	\colon \Nat \to \Nat \text{ und } \exists x \in
+	\Nat .\, f(x) = x \}
+\end{align*}
+
+\paragraph{$A_1$ ist entscheidbar.}
+Folgende TM $M$ entscheidet $A_1$:
+\begin{enumerate}
+	\item
+		Gegeben $(i,t) \in \Nat \times \Nat$.
+	\item
+		Simuliere $M_i$ auf Eingabe $i$.
+	\item
+		Wenn $M_i$ mindestens $t+1$ Schritte rechnet, halte und
+		akzeptiere. Ansonsten halte und akzeptiere nicht.
+\end{enumerate}
+\par
+
+\paragraph{$A_2$ ist co-r.e..}
+$A_2$ ist das Komplement des Halteproblems. Da das Halteproblem
+semi-entscheidbar (also r.e.) ist, kann $A_2$ nicht auch r.e. sein, ist also
+co-r.e.
+\par
+
+\paragraph{$A_3$ ist r.e..}
+Folgende NTM $N$ semi-entscheidet $A_3$:
+\begin{enumerate}
+	\item
+		Gegeben $i \in \Nat$.
+	\item
+		Wähle nicht-deterministisch ein $x \in \Nat$.
+	\item
+		Simuliere $M_i$ mit Eingabe $x$.
+	\item
+		Falls das berechnete Ergebnis wieder $x$ ist: Halte und
+		akzeptiere.
+\end{enumerate}
+\par
+
+\paragraph{$A_3$ ist nicht entscheidbar.}
+Es gilt:
+\[
+	A_3 = \{ i \in \Nat \,|\, M_i \text{ berechnet } f \in \{f \,|\,
+	\exists x \in \Nat .\, f(x) = x\} \}
+\]
+Definiere nun
+\[
+	S := \{f \,|\, \exists x \in \Nat .\, f(x) = x\}
+\]
+Es gilt:
+\begin{align*}
+	(x \mapsto x) & \in S \\
+	(x \mapsto x+1) & \notin S
+\end{align*}
+Mithilfe des Satzes von Rice folgt nun, dass die $A_3$ nicht entscheidbar ist.
+\par
