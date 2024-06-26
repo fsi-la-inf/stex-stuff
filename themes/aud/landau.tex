@@ -1,0 +1,215 @@
+\section{Landau-Notation}
+
+\begin{definition}
+	Sei $g \colon \Nat \rightarrow \Nat$ eine Funktion. Dann ist $O(g)$
+	wie folgt definiert:
+	\begin{equation}
+		O(g) := 
+		\left\{
+			f \colon \Nat \rightarrow \Reel^+ \,|\,
+			\begin{aligned}
+				\exists n_0 \in \Nat.\, \\
+				\exists c_2 > 0 \in \Reel.\, \\
+				\forall n \geq n_0 \in \Nat.\, \\
+				f(n) \leq c_2 \cdot g(n) \\
+			\end{aligned}
+		\right\}
+	\end{equation}
+\end{definition}
+
+\begin{definition}
+	Sei $g \colon \Nat \rightarrow \Nat$ eine Funktion. Dann ist $\Omega(g)$
+	wie folgt definiert:
+	\begin{equation}
+		\Omega(g) := 
+		\left\{
+			f \colon \Nat \rightarrow \Reel^+ \,|\, 
+			\begin{aligned}
+			\exists n_0 \in \Nat.\, \\
+			\exists c_1 > 0 \in \Reel.\, \\
+			\forall n \geq n_0 \in \Nat.\, \\
+			c_1 \cdot g(n) \leq f(n) \\
+			\end{aligned}
+		\right\}
+	\end{equation}
+\end{definition}
+
+\begin{definition}
+	Sei $g \colon \Nat \rightarrow \Nat$ eine Funktion. Dann ist $\Theta(g)$
+	wie folgt definiert:
+	\begin{equation}
+		\Theta(g) := 
+		\left\{
+			f \colon \Nat \rightarrow \Reel^+ \,|\, 
+			\begin{aligned}
+			\exists n_0 \in \Nat.\, \\
+			\exists c_1 > 0 \in \Reel.\, \\
+			\exists c_2 > 0 \in \Reel.\, \\
+			\forall n \geq n_0 \in \Nat.\, \\
+			c_1 \cdot g(n) \leq f(n) \leq c_2 \cdot g(n) \\
+			\end{aligned}
+		\right\}
+	\end{equation}
+\end{definition}
+
+%TODO Rechenregeln
+
+\begin{example}
+	\begin{align*}
+		O(3^{log_2{n}})
+		& = O(3^{log_3{n}}) \\
+		& = O(n) \\
+		& \subseteq O(n^2 - \log_2{n^{10}}) \\
+		& = O(n^2 - 10 \cdot \log_2{n}) \\
+		& = O(n^2) \\
+		& = O(3n^2 + \sqrt{4n}) \\
+		& \subseteq O(2^{n/2}) \\
+		& \subseteq O(3^{n-1})
+	\end{align*}
+\end{example}
+
+\begin{lemma}
+	Für alle Funktionen $f,g,h \colon \Nat \rightarrow \Nat$ gilt,
+	wenn $f \in \Theta(h)$ und $g \in O(h)$, dann auch $f + g \in
+	\Theta(h)$.
+\end{lemma}
+\begin{proof}
+	Seien $f,g,h \colon \Nat \rightarrow \Nat$ Funktionen, sodass gilt:
+	\begin{align}
+		f \in \Theta(h) \label{f_theta} \\
+		g \in O(h) \label{g_O}
+	\end{align}
+	Zu zeigen ist:
+	\begin{equation}
+		f + g \in \Theta(h) \label{fg_theta}
+	\end{equation}
+	Aus \eqref{f_theta} folgt, dass $n_{f0},c_{f1},c_{f2}$ existieren, 
+	sodass für alle $n \geq n_{f0}$ folgende Gleichung gilt:
+	\begin{equation}
+		c_{f1} \cdot h(n) \leq f(n) \leq c_{f2} \cdot h(n)
+	\end{equation}
+	Aus \eqref{g_O} folgt, dass $n_{g0},c_{g2}$ existieren, sodass für alle
+	$n \geq n_{g0}$ folgende Gleichung gilt:
+	\begin{equation}
+		g(n) \leq c_{g2} \cdot h(n)
+	\end{equation}
+	Gleichung \eqref{fg_theta} bedeutet, dass $n_0,c_1,c_2$ existieren,
+	sodass für alle $n \geq n_0$ gilt, dass
+	\begin{equation}
+		c_1 \cdot h(n) \leq f(n) + g(n) \leq c_2 \cdot h(n)
+	\end{equation}
+	Wähle nun $n_0 = \max{\{n_{f0},n_{g0}\}}$, $c_1 = c_{f1}$ und $c_2 = c_{f2} + c{g2}$. Dann
+	gilt:
+	\begin{align*}
+		\bf c_1 \cdot h(n)
+		& = c_{f1} \cdot h(n) \\
+		& \leq f(n) \\
+		& \leq \bf f(n) + g(n) \\
+		& \leq c_{f2} \cdot h(n) + c_{g2} \cdot h(n) \\
+		& = (c_{f2} + c_{g2}) \cdot h(n) \\
+		& = \bf c_2 \cdot h(n)
+	\end{align*}
+
+	Dies war noch zu zeigen.
+\end{proof}
+
+\begin{lemma}
+	Es gibt Funktionen $f,g,h \colon \Nat \rightarrow \Nat$, sodass
+	\begin{align}
+		f \in \Theta (h) \label{cex-1} \\
+		g \in \Omega (h) \label{cex-2} \\
+		f + g \notin \Theta (h) \label{cex-3}
+	\end{align}
+\end{lemma}
+\begin{proof}
+	Wähle $f(n) := 1$, $g(n) := 2^n$ und $h(n) := 1$.
+
+	Dann folgt \eqref{cex-1} direkt, da $f = g$. \eqref{cex-2} folgt, weil
+	für alle $n \geq 1$ gilt, dass $h(n) \leq g(n)$.
+
+	Jedoch hat $f + g$ nicht durchschnittlich konstante Laufzeit.
+	\eqref{cex-3} lässt sich zeigen, da für jedes $n_0,c_1,c_2 \in \Nat$
+	(gemäß obiger Definition) ein $n \geq n_0$ existiert, sodass $f(n) +
+	g(n) > c_2$, nämlich $n = 2^{c_2 + 1}$.
+\end{proof}
+
+\begin{theorem}[Master-Theorem]
+	Sei folgende Rekursionsgleichung gegeben:
+	\begin{equation}
+		T(n) = a \cdot T(\frac{n}{b}) + f(n)
+	\end{equation}
+
+	Dann gelten folgende Implikationen:
+	\begin{prooftree}
+		\AxiomC{
+			$
+			\exists \epsilon > 0.\, 
+			f \in O(n^{\log_b{a - \epsilon}})
+			$
+		}
+		\UnaryInfC{
+			$
+			T \in \Theta(n^{\log_b{a}})
+			$
+		}
+	\end{prooftree}
+	\begin{prooftree}
+		\AxiomC{
+			$
+			f(n) \in \Theta(n^{\log_b{a}})
+			$
+		}
+		\UnaryInfC{
+			$
+			T \in \Theta(n^{\log_b{a}}\cdot\log{n})
+			$
+		}
+	\end{prooftree}
+	\begin{prooftree}
+		\AxiomC{
+			$
+			\exists \epsilon > 0.\, 
+			f \in \Omega(n^{\log_b{a+\epsilon}})
+			$
+		}
+		\AxiomC{
+			$
+			\exists 0 < c < 1.\, 
+			\exists n_0 \in \Nat.\, 
+			\forall n \geq n_0.\, 
+			a \cdot f(\frac{n}{b}) \leq c \cdot f(n)
+			$
+		}
+		\BinaryInfC{
+			$
+			T \in \Theta(f)
+			$
+		}
+	\end{prooftree}
+\end{theorem}
+
+\begin{example}
+	Es ist folgende Gleichung gegeben:
+	\begin{equation*}
+		T(n) = 3 \cdot T(\frac{n}{5}) + \frac{n}{2}
+	\end{equation*}
+	Definiere
+	\begin{align*}
+		a & := 3 \\
+		b & := 5 \\
+		f(n) & := \frac{n}{2}
+	\end{align*}
+	Es gilt
+	\[
+		f \in \Omega(n^{\log_5{3+2}})
+	\]
+	sowie
+	\begin{align*}
+		3 \cdot f(\frac{n}{5})
+		& = \frac{3n}{10} \\
+		& = \frac{3}{5} \cdot \frac{n}{2} \\
+		& \leq \frac{3}{5} \cdot \frac{n}{2} \\
+		& \leq \frac{3}{5} \cdot f(n) \\
+	\end{align*}
+	Damit folgt nun nach Master-Theorem, dass $T \in \Theta(f)$.
+\end{example}
