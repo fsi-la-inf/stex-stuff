@@ -1,0 +1,346 @@
+% !TEX root = 0_main.tex
+\subsection*{Teilaufgabe 1: Theoretische Informatik} % TI
+\begin{aufgabe}%1
+\begin{teile}
+	\item
+	\item
+	\item
+	\item
+	\item
+	\item
+	\item
+	\item
+\end{teile}	
+\end{aufgabe}
+
+
+\begin{aufgabe}%2
+\begin{teile}
+	\item
+	\item
+\end{teile}	
+\end{aufgabe}
+
+
+\begin{aufgabe}%3
+\begin{teile}
+	\item
+	\item
+\end{teile}	
+\end{aufgabe}
+
+
+\begin{aufgabe}%4
+\begin{teile}
+	\item
+	\item
+	\item
+\end{teile}
+\end{aufgabe}	
+
+\begin{aufgabe}%5
+\end{aufgabe}
+
+\newpage
+\subsection*{Teilaufgabe 2: Algorithmen} % A&D
+
+\newcommand{\code}[1]{{\larger\texttt{#1}}}
+
+\setcounter{aufgcount}{0}
+
+\begin{aufgabe}%1
+\begin{teile}	
+	\item 	
+	\begin{tabular}[t]{>{\centering\arraybackslash}m{2cm} *{4}{| >{\centering\arraybackslash}m{0.6cm}}}
+    \textbf{Durchlauf} & \textbf{n} & \textbf{m} & \textbf{x} & \textbf{y} \\
+    \hline
+    1 & 3 & 2 & 3 & 0 \\
+    \hline
+    2 & 3 & 2 & 2 & 1 \\
+    \hline
+    3 & 3 & 2 & 1 & 2 \\
+	\end{tabular} \\	
+	
+	Rückgabewert x = 1 \\
+
+	\item
+	Nein, \code{countup} wird immer terminieren für jegliche Eingabewerte für {\larger\texttt{n}} und {\larger\texttt{m}}, da die Abbruchbedingung der {\larger\texttt{while}}-Schleife, {\larger\texttt{y<m}}, irgendwann zu {\larger\texttt{false}} ausgewertet wird, denn in jedem Schleifendurchlauf wird {\larger\texttt{y}} inkrementiert.
+	\\
+	
+	\item
+	{\larger\texttt{n}} spielt für die Laufzeit keine Rolle. Es ist bloß der Anfangswert für den Rückgabewert {\larger\texttt{x}}, der in der Schleife herabgezählt wird. 
+	Entscheidend ist {\larger\texttt{m}}, das die Obergrenze der Schleifendurchläufe bildet.
+	Die Schleife wird also {\larger\texttt{m}}-mal durchlaufen. \\
+	Die restlichen Zuweisungen erfolgen jeweils in 0(1). \\
+	Folglich beträgt die Laufzeit O(m). \\
+	
+	\item
+	\begin{tabular}[t]{>{\centering\arraybackslash}m{2cm} *{4}{| >{\centering\arraybackslash}m{0.6cm}}}
+    \textbf{Durchlauf} & \textbf{n} & \textbf{m} & \textbf{x} & \textbf{y} \\
+    \hline
+    1 & 3 & 2 & 3 & 0 \\
+    \hline
+    2 & 3 & 2 & 2 & 1 \\
+    \hline
+    3 & 3 & 2 & 1 & 2 \\
+    \hline
+    4 & 1 & 2 & 1 & 0 \\	
+	\hline
+	5 & 1 & 2 & 0 & 1 \\	
+	\hline
+	6 & 1 & 2 &-1 & 2 \\	
+	\hline
+	7 & 0 & 2 &-1 & 2 \\
+	\end{tabular} \\
+	
+	Rückgabewert x = -1 \\
+
+	\item
+	Nein. Das liegt daran, dass die Bedingung der {\larger\texttt{while}}-Schleife, {\larger\texttt{n<0}}, irgendwann zu {\larger\texttt{false}} ausgewertet wird.
+	Bei jeder Iteration der Schleife wird entweder {\larger\texttt{y}} inkrementiert oder {\larger\texttt{n}} halbiert. Beide Operationen werden letzlich dazu führen, dass {\larger\texttt{n$\leq$0}} wird. \\
+	
+	\item
+	Die Laufzeit wird hier bedingt durch die Abbruchbedingung der {\larger\texttt{while}}-Schleife, {\larger\texttt{n>0}}.
+	Innerhalb der Schleife wird jedoch die Verkleinerung (bzw. \textit{Halbierung}) von {\larger\texttt{n}} immer nur ausgeführt nach jeweils {\larger\texttt{m}} Iterationen.
+	Da {\larger\texttt{n}} immer halbiert wird, trägt die Abbruchbedingung {\larger\texttt{n>0}} einen logaritmischen Laufzeitfaktor bei. \\
+	Wir kommen also auf eine Laufzeit von: O(m·log(n)).
+	
+\end{teile}
+\end{aufgabe}
+
+\begin{aufgabe}%2
+
+\begin{teile}
+	\item 
+	Der Binärbaum: \\
+	\scalebox{0.7}{
+	\begin{tikzpicture}[semithick]
+		\tikzstyle{level 1}=[sibling distance=52mm]
+		\tikzstyle{level 2}=[sibling distance=32mm]
+		\tikzstyle{level 3}=[sibling distance=18mm]
+		\tikzstyle{level 4}=[sibling distance=10mm]
+	\node[state]{2}
+	  child{node[state]{4}
+	    child{node[state]{14}	
+	      child{node[state]{22}}
+	      child{node[state]{20}}
+	    }
+	    child{node[state]{12} 
+	      child{node[state]{18}}
+	      child{node[state]{16}}
+	    }
+	  }
+	  child{node[state]{6}	
+	    child{node[state]{10}}
+	    child{node[state]{8}}
+	  };
+	\end{tikzpicture}
+	} \\
+
+	
+	\item
+	{\larger\texttt{magic}} gibt in diesem Falle {\larger\texttt{true}} zurück. \\ 
+	 
+	\item
+	Das Feld \code{A} repräsentiert einen Baum. {\larger\texttt{magic}} prüft den Teilbaum von {\larger\texttt{A}}, der den Knoten an der Stelle {\larger\texttt{i}} als Wurzelknoten hat, auf Min-Haldeneigenschaft. 
+	Das bedeutet, dass die Werte der Kindknoten eines jeden Elternknotens mindestens so groß sind wie der Wert des Elternknotens. \\
+	
+	\item
+	Wenn das Feld aufsteigend sortiert ist, dann ist die Min-Haldeneigenschaft erfüllt, da jeder Sprung zu einem Kindknoten (i * 2 + 1 bzw. 2) einen mindestens ebenso großen Kindknoten offenbart. {\larger\texttt{magic}} prüft die Min-Haldeneigenschaft, und wird somit immer {\larger\texttt{true}} liefern. \\
+	
+	\item
+	{\larger\texttt{true: \ \{1,2,3\}}} \\
+	{\larger\texttt{true: \ \{1,3,5\}}} \\
+	{\larger\texttt{false: \{3,2,1\}}} \\
+	
+	\item
+	Die entfernte bedingte Anweisung bildet den Basisfall der Rekursion. Er prüft, ob wir an einem Blattknoten angelangt sind. Ein Blattknoten verfügt über keine Kinder mehr, erfüllt also automatisch die Min-Haldeneigenschaft. Damit sind keine weiteren Rekursionsaufrüfe notwendig. \\
+	Ohne diesen Basisfall hätte die Rekursion also keine Abbruchbedingung, und würde weiterlaufen bis irgendwann eine {\larger\texttt{ArrayIndexOutOfBoundsException}} einträte, bedingt dadurch, dass mit jedem Aufruf von magic der Wert von {\larger\texttt{i}} erhöht wird, der die Grundlage bildet für den Zugriff auf die Feldelemente. \\  	
+	
+	\newpage
+	\item
+		\begin{enumerate}[label=\roman*.)]
+		\item
+		Nach Rechtsrotation: \\
+		\scalebox{0.7}{ %zum skalieren des Bildes
+		\begin{tikzpicture}[semithick]
+		\tikzstyle{level 1}=[sibling distance=52mm]
+		\tikzstyle{level 2}=[sibling distance=32mm]
+		\tikzstyle{level 3}=[sibling distance=18mm]
+		\node[state]{8}
+		child{node[state]{6}
+		child{node[state]{4}}
+		child{node[state]{7}}
+		}
+		child {node[state]{10}
+		child [missing]{}
+		child {node[state]{12}}
+		};
+		\end{tikzpicture}
+		}	\\	
+				
+		\item
+		Nach Rechts-Links-Rotation: \\
+		\scalebox{0.7}{ %zum skalieren des Bildes
+		\begin{tikzpicture}[semithick]
+		\tikzstyle{level 1}=[sibling distance=52mm]
+		\tikzstyle{level 2}=[sibling distance=32mm]
+		\tikzstyle{level 3}=[sibling distance=18mm]
+		\node[state]{10}
+		child{node[state]{8}
+		child{node[state]{4}}		
+		child[missing]{}
+		}
+		child{node[state]{12}
+		child{node[state]{11}}
+		child{node[state]{14}}
+		};
+		\end{tikzpicture}
+		}	\\	
+		
+		\item
+		Nach Rechts-Links-Rotation: \\
+		\scalebox{0.7}{ %zum skalieren des Bildes
+		\begin{tikzpicture}[semithick]
+		\tikzstyle{level 1}=[sibling distance=52mm]
+		\tikzstyle{level 2}=[sibling distance=32mm]
+		\tikzstyle{level 3}=[sibling distance=18mm]
+		\node[state]{8}
+		child{node[state]{5}
+		child{node[state]{4}}		
+		child{node[state]{6}}
+		}
+		child{node[state]{10}
+		child[missing]{}
+		child[missing]{}
+		};
+		\end{tikzpicture}
+		}	\\		
+		\end{enumerate}	
+	
+\end{teile}
+\end{aufgabe}
+ 
+\begin{aufgabe}%3
+\begin{teile}
+
+	\item
+	
+    \begin{tabular}[t]{*{5}{>{\centering\arraybackslash}m{0.6cm}|}>{\raggedright\arraybackslash}m{4.4cm}}
+        \textbf{A} & \textbf{B} & \textbf{C} & \textbf{D} & \textbf{E} & \textbf{Prioritätswarteschlange} \\
+        \hline
+        0 & $\infty$ & $\infty$ & $\infty$ & $\infty$ & {\larger\texttt{[A]}} \\
+        \hline 
+        0 & 15 & 5 & $\infty$ & 12 & {\larger\texttt{[C,E,B]}} \\
+        \hline
+        0 & 13 & 5 & 10 & 8 & {\larger\texttt{[E,D,B]}} \\
+        \hline
+        0 & 10 & 5 & 9 & 8 & {\larger\texttt{[D,B]}} \\
+        \hline
+        0 & 10 & 5 & 9 & 8 & {\larger\texttt{[B]}} \\
+        \hline
+        0 & 10 & 5 & 9 & 8 & {\larger\texttt{[-]}} \\
+    \end{tabular} \\
+
+	\item
+	{\larger\texttt{A → C → E → B}} \\
+\end{teile}
+\end{aufgabe}
+
+\newpage
+\begin{aufgabe}%4
+\begin{teile}
+
+	\item
+	Die anfänglichen Initialisierungen und Wertzuweisungen erfolgen alle in O(1). Die \code{while}-Schleife hingegen wird \code{n}-mal ausgeführt, da \code{i} bei 0 beginnt und so lange läuft, bis \code{i=n}. Die Operationen innerhalb der Schleife erfolgen ebenfalls alle in O(1).	Wir kommen also auf eine Laufzeit von O(n).
+	
+	Die Frage nach einer \glqq worst-case\grqq -Laufzeit in der Aufgabenstellung ist irreführend, da es nur einen ganzzahligen Eingabewert von \code{n} gibt. Eine Unterscheidung zwischen einem besten oder schlimmsten Fall ist hier also völlig irrelevant. Sie kann aber bspw. eine Rolle spielen bei Sortierverfahren, deren Eingabewerte Reihungen sind, die unterschiedlich gut vorsortiert sein können. \\
+
+	\item
+	Die \code{while}-Schleife wird \code{n}-mal ausgeführt. Innerhalb der Schleife itereieren wir in der äußeren \code{for}-Schleife bis \code{y}, das den Wert \code{n} zugewiesen bekommt, wobei \code{n} nach jedem \code{while}-Schleifendurchlauf dekrementiert wird. Mit jeder while-Iteration vollziehen wir also je um eins weniger Durchläufe der äußeren Schleife (stellt man sich die Anzahl der Iterationen bildlich wie eine Tabelle vor, haben wir hier also kein Quadrat, sondern eine Dreieck). Damit durchlaufen wir die äußere \code{for}-Schleife (die innerhalb der \code{while}-Schleife liegt) also \code{$\frac{n}{2}$}-mal.
+	
+	Die \textit{innere} \code{for}-Schleife durchlaufen wir dagegen \code{i}-mal. \code{i} richtet sich nach \code{y}, das sich wiederum nach \code{n} richtet, wobei \code{i} in jedem Durchlauf der äußeren Schleife inkrementiert wird. Die innere Schleife wird also \code{$\frac{n}{2} \cdot \frac{n}{2} = \frac{n}{4}$}-mal durchlaufen, wir kommen also auf eine Gesamtlaufzeit von O($n \cdot \frac{n}{2} \cdot \frac{n}{4}$). Das bedeutet also eine Laufzeit von O(n\textsuperscript{3}).
+	
+	
+	Auch hier können wir die Frage nach der \glqq worst-case\grqq -Laufzeit ignorieren. \\
+	 
+	\item
+	Mit jedem Rekursionsaufruf wird der Eingabewert halbiert. Es sind also log(n) Rekursionsaufrufe erforderlich. Innerhalb eines Rekursionsaufrufes geschieht neben einem Rekursionsaufruf (in O(1)) eine Quadrierung (in O(1)) und eine Addition (in O(1)).
+	
+	Damit kommen wir auf eine Gesamtlaufzeit von O(log(n)).
+
+\end{teile}	
+\end{aufgabe}
+
+\newpage
+\begin{aufgabe}%5
+	\begin{teile}
+	
+	\item
+	\begin{tabular}[t]{>{\centering\arraybackslash}m{1.2cm} | m{2.6cm}}
+    \textbf{Fach} & \textbf{Schlüssel k} \\
+    \hline
+    0 & \code{E - U} \\
+    \hline
+    1 & \code{?} \\ 
+    \hline
+    2 & \\
+    \hline
+    3 & \\
+	\hline
+	4 & \code{Y - ! - A}\\
+	\hline
+	5 & \code{B} \\
+	\hline
+	6 & \\ 
+	\hline
+	7 & \code{D} \\
+	\end{tabular} \\\\	
+	
+	\item
+	\begin{tabular}[t]{>{\centering\arraybackslash}m{1.2cm} | >{\centering\arraybackslash}m{1.2cm} | m{4cm}}
+    \textbf{Fach} & \textbf{k} & \textbf{Durchlaufene Fächer}  \\
+    \hline
+    0 & E & \code{0} \\
+    \hline
+    1 & U & \code{0 → 1} \\ 
+    \hline
+    2 & D & \code{7 → 0 → 1 → 2} \\
+    \hline
+    3 & ? & \code{2 → 3} \\
+	\hline
+	4 & Y & \code{4} \\
+	\hline
+	5 & B & \code{5} \\
+	\hline
+	6 & ! & \code{4 → 5 → 6} \\ 
+	\hline
+	7 & A & \code{4 → 5 → 6 → 7} \\
+	\end{tabular} \\\\
+	
+	\item
+		\begin{tabular}[t]{>{\centering\arraybackslash}m{1.2cm} | >{\centering\arraybackslash}m{1.2cm} | m{5.2cm}}
+    \textbf{Fach} & \textbf{k} & \textbf{Verwendete Streufunktion}  \\
+    \hline
+    0 & E & h\textsubscript{0} \\
+    \hline
+    1 & A & h\textsubscript{1} \\ 
+    \hline
+    2 & U & h\textsubscript{1} \\
+    \hline
+    3 & ! & h\textsubscript{1} \\
+	\hline
+	4 & Y & h\textsubscript{0} \\
+	\hline
+	5 & B & h\textsubscript{0} \\
+	\hline
+	6 & ? & h\textsubscript{2} \\ 
+	\hline
+	7 & D & h\textsubscript{0} \\
+	\end{tabular} \\
+		
+	\end{teile}	
+\end{aufgabe}
+
+
+

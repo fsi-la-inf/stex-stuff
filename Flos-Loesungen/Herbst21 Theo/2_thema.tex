@@ -1,0 +1,237 @@
+% !TEX root = 0_main.tex
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% H21, Thema 2, Teilaufgabe 2
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{aufgabe} % A1
+\begin{teile}
+    \item Ja, jedes Wort aus $L(aa^*)$ lässt sich mit diesem Automaten darstellen, indem man wiederholt zwischen den Zuständen \textbf{0} und \textbf{1} wechselt und am Ende mit dem Übergang zu Zustand \textbf{3} abschließt.
+    Da von Zustand \textbf{1} zu Zustand \textbf{0} ein $\varepsilon$-Übergang möglich ist, lassen sich auch gerade Anzahlen an a's darstellen.
+    \item Ja, um ein beliebiges Wort dieser Sprache mit dem Automaten darzustellen, wird zu erst der Teil $(aa^*)$ wie oben beschrieben mit den Zuständen \textbf{0} und \textbf{1} abgearbeitet, nur so, dass der Automat am Ende in Zustand \textbf{1} ist.
+    Dann wird ${(bbb)}^*$ mit den Zuständen \textbf{1} und \textbf{2} abgearbeitet, da beide Zustände einen $\varepsilon$-Übergang zu Zustand \textbf{0} besitzen, können sie eine beliebige Anzahl an b's verarbeiten, bevor sie wieder in Zustand 0 zurückkehren,
+    um die restlichen $(aa^*)$ abzuarbeiten.
+    \item \ \\
+    \begin{tikzpicture}[->,>=stealth, node distance=2cm, semithick]
+        \node[state, initial] (0) {$0$};
+        \node[state, accepting, right=of 0] (013) {$0,1,3$};
+        \node[state, right=of 013] (02) {$0,2$};
+        \node[state, above=of 02] (01) {$0,1$};
+        \node[state, above=of 0] (e) {$\emptyset$};
+        \path (0) edge [above] node {a} (013)
+                  edge [above left] node {b} (e)
+        (013) edge [loop below] node {a} (013)
+        (013) edge [bend left=10, above] node {b} (02)
+        (02) edge [bend left=10, below] node {a} (013)
+        (02) edge [left] node {b} (01)
+        (01) edge [above left] node {a} (013)
+        (01) edge [bend left, right] node {b} (02);
+    \end{tikzpicture}
+
+    \item Nein, Beweis über reguläre Pumpeigenschaft:
+    
+    Sei $n \in \mathbb{N}$ beliebig aber fest. Setze $z = a^n x a^n$ (ein Wort aus der Sprache).
+    \\Seien $u, v, w \in {\{a,b,x\}}^*$ beliebig aber fest, mit $uvw = z$ (eine beliebige Zerlegung des Wortes).
+
+    Es gelte:
+    \begin{enumerate}
+        \item $\vert uv\vert \leq n$
+        \item $v \not= \varepsilon$
+    \end{enumerate}
+    Aus 1.\ folgt, dass $uv$ nur $a$'s links des $x$ enthalten kann und $w$ den Rest des Wortes beinhaltet.
+    Aus 2.\ folgt, dass $v$ mindestens ein $a$ links des $x$ enthält.
+
+    Nun gilt es zu zeigen, dass ein $i$ existiert, mit dem gilt $u v^i w \not\in L$, wobei $L$ die Sprache ist.
+    
+    Dazu setzen wir $i = 0$ (jede andere Zahl außer 1 würde auch funktionieren).
+    Da $v$ mindestens ein Zeichen links des $x$ enthält und nur diese Zeichen enthalten kann, wird die Balance zwischen der Länge des linken und rechten Teils zerstört, welche ein Wort aus der Sprache einhalten muss.
+
+    Somit gilt $u v^i w \not\in L$ und damit auch, dass die Sprache nicht die reguläre Pumpeigenschaft besitzt und auch nicht regulär ist.
+
+    \textbf{Hinweis:}
+    \\Um für eine Sprache $L$ über einem Alphabet $\Sigma$ zu beweisen, dass sie nicht die reguläre Pumpeigenschaft besitzt, zeigt man folgendes:
+    \begin{align*}
+        &\forall n_L \in \mathbb{N}, \exists z \in L, \vert z \vert \geq n_L, \forall u,v,w \in \Sigma^*, uvw = z:\\
+        & (\vert uv \vert \leq n_L \land v \not= \varepsilon) \Rightarrow \exists i \geq 0: u v^i w \not\in L 
+    \end{align*}
+    \item Nein, auch diese Sprache besitzt die reguläre Pumpeigenschaft nicht und ist deswegen nicht regulär.
+    Da in obigem Beweis das Wort $z = a^n x a^n$ verwendet wurde, gilt dieser Beweis auch für diese Sprache.
+\end{teile}
+
+\end{aufgabe} % A2
+\begin{aufgabe}
+    \begin{teile}
+        \item \ \\
+        \begin{center}
+            \begin{tabular}{|c|c|c|c|c|c|c|c|}
+                \hline
+                a&b&b&a&b&b&a&b\\
+                \hline
+                \{C\}&\{S\}&\{S\}&\{C\}&\{S\}&\{S\}&\{C\}&\{S\}\\
+                \{B\}&\{B\}&\{\}&\{B\}&\{B\}&\{\}&\{B\}\\
+                \{S\}&\{C\}&\{\}&\{S\}&\{C\}&\{\}\\
+                \{C\}&\{B\}&\{B\}&\{C\}&\{B\}\\
+                \{S, B\}&\{S\}&\{C\}&\{S\}\\
+                \{S, B\}&\{C\}&\{B\}\\
+                \{C\}&\{S, B\}\\
+                \{S, B\}\\
+            \end{tabular}
+        \end{center}
+    Da an unterster Stelle in der Tabelle ein S vorkommt, ist das Wort in der Sprache enthalten.
+
+    \textbf{Ableitungsbäume:}
+
+    \textbf{1.}
+
+    \scalebox{0.65}{ %zum skalieren des Bildes
+    \begin{tikzpicture}[semithick]
+    \tikzstyle{level 1}=[sibling distance=128mm]
+    \tikzstyle{level 2}=[sibling distance=64mm]
+    \tikzstyle{level 3}=[sibling distance=32mm]
+    \node[state]{S}
+    child{node[state]{C}
+        child{node[state]{C}
+            child{node[state]{a}}
+        }
+        child{node[state]{C}
+            child{node[state]{B}
+                child{node[state]{S}
+                    child{node[state]{b}}
+                }
+                child{node[state]{S}
+                    child{node[state]{b}}
+                }
+            }
+            child{node[state]{C}
+                child{node[state]{a}}
+            }
+        }
+    }
+    child {node[state]{B}
+        child {node[state]{C}
+            child{node[state]{B}
+                child{node[state]{S}
+                    child{node[state]{b}}
+                }
+                child{node[state]{S}
+                    child{node[state]{b}}
+                }
+            }
+            child{node[state]{C}
+                child{node[state]{a}}
+            }
+        }
+        child {node[state]{S}
+            child{node[state]{b}}
+        }
+    };
+    \end{tikzpicture}
+    }
+
+    \textbf{2.}
+
+    \scalebox{0.65}{ %zum skalieren des Bildes
+    \begin{tikzpicture}[semithick]
+    \tikzstyle{level 1}=[sibling distance=128mm]
+    \tikzstyle{level 2}=[sibling distance=128mm]
+    \tikzstyle{level 3}=[sibling distance=64mm]
+    \tikzstyle{level 4}=[sibling distance=50mm]
+    \tikzstyle{level 5}=[sibling distance=40mm]
+    \node[state]{S}
+    child{node[state]{C}
+        child{node[state]{a}}
+    }
+    child {node[state]{B}
+        child{node[state]{C}
+            child{node[state]{B}
+                child{node[state]{S}
+                    child{node[state]{b}}
+                }
+                child{node[state]{S}
+                    child{node[state]{b}}
+                }
+            }
+            child{node[state]{C}
+                child{node[state]{C}
+                    child{node[state]{a}}
+                }
+                child{node[state]{C}
+                    child{node[state]{B}
+                        child{node[state]{S}
+                            child{node[state]{b}}
+                        }
+                        child{node[state]{S}
+                            child{node[state]{b}}
+                        }
+                    }
+                    child{node[state]{C}
+                        child{node[state]{a}}
+                    }
+                }
+            }
+        }
+        child{node[state]{S}
+            child{node[state]{b}}
+        }
+    };
+    \end{tikzpicture}
+    }
+    \item Die Sprache ist nicht kontextfrei, denn sie besitzt nicht die kontextfreie Pumpeigenschaft. Beweis:
+    
+    Sei $n \in \mathbb{N}$ beliebig aber fest. Setze $z = m m c m^R m^R \in L_{eq}$ mit $m = a^n$.
+    \\Sei $u,v,w,x,y \in {\{a, b, c\}}^*$ eine beliebige Zerlegung des Wortes, also $z = uvwxy$.
+    \\Es gelte:
+    \begin{enumerate}
+        \item $\vert vwx \vert \leq n$
+        \item $vx \not= \varepsilon$
+    \end{enumerate}
+    Das Wort $z$ besteht aus vier Blöcken in denen n-mal $a$ vorkommt.
+    Damit das Wort in der Grammatik ist müssen in allen vier Blöcken gleich viele $a$ vorkommen.
+
+    Aus 1.\ lässt sich nun folgern, dass $vwx$ höchstens zwei dieser Blöcke `berührt'.
+    \\Aus 2.\ kann man folgern, dass $vx$ mindestens einen dieser Blöcke enthält.
+
+    Wenn wir nun pumpen, also $i \not= 1$ setzen, gilt $u v^i w x^i y \not\in L_{eq}$, denn das Pumpen verändert die Anzahl an $a$ in einem oder zwei Blöcken, 
+    da aber alle vier Blöcke die gleiche Anzahl haben müssen liegt das neue Wort nicht mehr in $L_{eq}$.
+
+    \item Die Sprache ist kontextfrei, denn sie wird durch folgende kontextfreie Grammatik beschrieben:
+    \begin{align*}
+        S &\rightarrow \varepsilon\ \vert \ A \ \vert \ B\\
+        A &\rightarrow ad \ \vert \ aAd \ \vert \ aBd\\
+        B &\rightarrow bc \ \vert \ bBc
+    \end{align*}
+    \end{teile}
+\end{aufgabe}
+
+\begin{aufgabe} % A3
+    \begin{teile}
+        \item Eine Sprache ist entscheidbar,
+        wenn eine deterministische 1-Band Turing Maschine existiert, 
+        welche gestartet mit einem Wort w genau dann akzeptierend hält, wenn das Wort in der Sprache liegt und sonst nicht akzeptierend hält.
+        \item Eine Sprache ist rekursiv aufzählbar, wenn eine deterministische 1-Band Turing Maschine $M$ existiert, mit $L(M) = M$.
+        Die Turing Maschine muss also die Sprache.
+        \item Ja, um zu entscheiden ob ein Wort in der Sprache $L_1 \cap L_2$ liegt, kann man die beiden Turing-Maschinen verwenden, welche die jeweiligen Sprachen entscheiden.
+        Starte beide Maschinen mit dem Wort und prüfe ob sie akzeptierend halten, falls ja liegt das Wort in $L_1 \cap L_2$, falls nicht beide akzeptierend halten, liegt das Wort nicht $L_1 \cap L_2$.
+        Somit lässt sich also eine neue TM konstruieren welche $L_1 \cap L_2$ entscheidet, damit ist $L_1 \cap L_2$ entscheidbar.
+        \item Ja, per Definition des Komplements gilt: $L \cap \overline{L} = \emptyset$ und die leere Menge ist immer entscheidbar (und somit auch semi-entscheidbar).
+        \item Nein, sei $L_1 = \Sigma^*$, also alle möglichen Wörter des Alphabets, diese Sprache ist entscheidbar, denn jedes Wort liegt in der Sprache. Sei ferner $L_2$ eine beliebige semi-entscheidbare Sprache auf dem gleichen Alphabet $\Sigma$.
+        
+        Da $L_1$ die Grundmenge ist, ist der Schnitt dieser beiden Mengen wieder $L_2$, welche laut Annahme semi-entscheidbar ist.
+        \item Ja, denn wenn $L$ entscheidbar ist kann für jedes Wort entschieden werden, ob es in $L$ liegt.
+        
+        Wenn es in $L$ liegt, dann liegt es nicht in $\overline{L}$.
+        Wenn es nicht in $L$ liegt, dann liegt es in $\overline{L}$ und so kann man $\overline{L}$ entscheiden.
+        \item Kontextfreie Sprachen sind durch den CYK-Algorithmus entscheidbar.
+        Damit sind $L_1$ und $L_2$ entscheidbar und laut (c) ist ihr Schnitt es auch.
+    \end{teile}
+\end{aufgabe}
+
+
+
+
+
+
+
+
+
+
+
