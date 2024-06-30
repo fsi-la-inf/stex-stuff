@@ -26,7 +26,7 @@ Alle Infos zum Mitmachen finden sich in der Datei
 ## Licensing
 
 Alle Beiträge in diesem Repository sind unter der
-[CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/) Lizenz
+[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/) Lizenz
 veröffentlicht. Siehe [LICENSE](LICENSE) für Details. Insbesondere können wir
 keine Beiträge akzeptieren, die nicht unter dieser Lizenz veröffentlicht werden
 können.
