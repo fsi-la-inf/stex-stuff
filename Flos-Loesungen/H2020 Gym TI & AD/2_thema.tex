@@ -1,0 +1,359 @@
+% !TEX root = 0_main.tex
+\subsection*{Teilaufgabe 1: Theoretische Informatik}
+\begin{aufgabe}%1
+\begin{teile}
+	\item
+	\item
+	\item
+\end{teile}		
+\end{aufgabe}
+
+\begin{aufgabe}%2
+\begin{teile}
+\item
+\item
+\end{teile}	
+\end{aufgabe}
+
+\begin{aufgabe}%3
+\begin{teile}
+	\item
+	\item
+	\item
+	\item 
+\end{teile}		
+\end{aufgabe}
+
+\begin{aufgabe}%4
+\begin{teile}
+	\item
+	\item
+\end{teile}		
+\end{aufgabe}
+
+\newpage
+\subsection*{Teilaufgabe 2: Algorithmen}
+\setcounter{aufgcount}{0}
+
+\begin{aufgabe}%1
+
+\begin{teile}
+	\item 
+    \begin{tabular}[t]{|>{\centering\arraybackslash}p{2cm}|p{4cm}|>{\centering\arraybackslash}p{2cm}|p{4cm}|}
+        \hline
+        \textbf{Schlüssel} & \textbf{Inhalt} & \textbf{Schlüssel} & \textbf{Inhalt} \\
+        \hline
+        A & Alfons & N & Michael \\
+        \hline
+        B & Bert & O & Norbert \\
+        \hline
+        C & Christel & P & Matthias \\
+        \hline
+        D & Dirk & Q & \\
+        \hline
+        E & Adalbert & R & \\
+        \hline
+        F & Edith & S & \\
+        \hline
+        G & Emil & T & \\
+        \hline
+        H & & U & \\
+        \hline
+        I & Inge & V & \\
+        \hline
+        J & & W & \\
+        \hline
+        K & Kurt & X & \\
+        \hline
+        L & & Y & \\
+        \hline
+        M & Martin & Z & \\
+        \hline
+    \end{tabular} \\
+
+	\item
+    \begin{tabular}[t]{|>{\centering\arraybackslash}p{2cm}|p{4cm}|>{\centering\arraybackslash}p{2cm}|p{4cm}|}
+        \hline
+        \textbf{Schlüssel} & \textbf{Inhalt} & \textbf{Schlüssel} & \textbf{Inhalt} \\
+        \hline
+        A &  & N & Nathan \\
+        \hline
+        B & Brigitte & O &  \\
+        \hline
+        C &  & P &  \\
+        \hline
+        D & Dirk, Diana & Q & \\
+        \hline
+        E & Elmar, Emanuel & R & \\
+        \hline
+        F &  & S & Sebastian \\
+        \hline
+        G &  & T & Thomas, Torsten \\
+        \hline
+        H & & U & \\
+        \hline
+        I & Inge & V & \\
+        \hline
+        J & & W & \\
+        \hline
+        K & Kurt, Katrin, Karolin & X & \\
+        \hline
+        L & & Y & \\
+        \hline
+        M &  & Z & \\
+        \hline
+    \end{tabular}
+\end{teile}		
+\end{aufgabe}
+
+\newpage
+\begin{aufgabe}%2
+\begin{teile}
+	\item
+	Um die Aussage $f \in O(n^3)$ zu beweisen, müssen wir zeigen, dass es Konstanten $c$ und $n_0$ gibt, so dass für alle $n \geq n_0$ gilt:\\
+	$f(n) \leq c \cdot n^3$ 
+	
+	Die quadratischen und logarithmischen Terme in $f(n)$ können wir ignorieren, da sie gegenüber dem kubischen Term vernachlässigbar sind, wenn $n$ groß genug ist. Wir können $f(n)$ also abschätzen durch: \\
+	$f(n) \leq 2 \cdot n^3$ 
+	
+	Jetzt können wir eine Konstante $c=2$ wählen und $n_0=1$ setzen: \\ 
+	$\Rightarrow \forall n \geq n_0: f(n) \leq 2 \cdot n^3 \leq c \cdot n^3$ \\
+	$\Rightarrow f \in O(n^3)$ 
+	
+	Für ausreichend große $n$ ist $f(n)$ also beschränkt durch $n^3$. \\ 
+	$f$ ist also enthalten in der Komplexitätsklasse O(n\textsuperscript{3}). \\
+	
+	\item
+	Um die Aussage $f(n) = 4^n \notin O(2^n)$ zu beweisen, müssen wir zeigen, dass es \textit{keine} Konstanten $c$ und $n_0$ gibt, so dass für alle $n \geq n_0$ gilt: \\ 
+	$f(n) \leq c \cdot 2^n$ 
+	
+	Wir können dies zeigen durch einen \textbf{Widerspruchsbeweis}: \\
+	Egal wie groß wir die Konstante $c$ setzen: obige Ungleichung wird niemals gelten für \textit{alle} $n > n_0$, denn allerspätestens sobald $n > c$ ist, wird klar: \\
+	$4^n > c \cdot 2^n$ \\
+	$\Rightarrow f(n) \notin O(2^n)$. 
+	
+	$f$ ist also nicht enthalten in der Komplexitätsklasse O(2\textsuperscript{n}). \\
+	
+	\item \textcolor{red}{???} \\
+	\item \textcolor{red}{???} \\
+\end{teile}	
+\end{aufgabe}
+
+
+\newpage
+\begin{aufgabe}%3
+\begin{teile}
+	\item
+	\begin{tabular}[t]{|p{1.2cm}|*{6}{>{\centering\arraybackslash}p{0.6cm}|}}
+	\hline
+	\code{\textbf{i}} & 0 & 1 & 2 & 3 & 4 & 5 \\
+	\hline
+	\code{\textbf{A[i]}} & 10 & 20 & 15 & 40 & 25 & 35 \\
+	\hline
+	\end{tabular}
+	
+	\item
+	\begin{enumerate}
+		\item
+		\begin{tabular}[t]{|p{1.2cm}|*{6}{>{\centering\arraybackslash}p{0.6cm}|}}
+		\hline
+		\code{\textbf{i}} & 0 & 1 & 2 & 3 & 4 & 5 \\
+		\hline
+		\code{\textbf{A[i]}} & 15 & 20 & 35 & 40 & 25 & - \\
+		\hline
+		\end{tabular} \\
+		Knoten 10 wurde gelöscht. 
+		Knoten 35 ist an die Spitze gerückt. 
+		Anschließend hat er den Platz gewechselt mit Knoten 15, um die Min-Haldeneigenschaft wiederherzustellen.
+		
+		\item 
+		\begin{tabular}[t]{|p{1.2cm}|*{6}{>{\centering\arraybackslash}p{0.6cm}|}}
+		\hline
+		\code{\textbf{i}} & 0 & 1 & 2 & 3 & 4 & 5 \\
+		\hline
+		\code{\textbf{A[i]}} & 20 & 25 & 35 & 40 & - & - \\
+		\hline
+		\end{tabular} \\
+		Knoten 15 wurde gelöscht. \\
+		Knoten 25 ist an die Spitze gerückt. 
+		Anschließend hat er den Platz gewechselt mit Knoten 20, um die Min-Haldeneigenschaft wiederherzustellen.
+		
+		\item 
+		\begin{tabular}[t]{|p{1.2cm}|*{6}{>{\centering\arraybackslash}p{0.6cm}|}}
+		\hline
+		\code{\textbf{i}} & 0 & 1 & 2 & 3 & 4 & 5 \\
+		\hline
+		\code{\textbf{A[i]}} & 25 & 40 & 35 & - & - & - \\
+		\hline
+		\end{tabular} \\
+		Knoten 20 wurde gelöscht. \\
+		Knoten 40 ist an die Spitze gerückt. 
+		Anschließend hat er den Platz gewechselt mit Knoten 25, um die Min-Haldeneigenschaft wiederherzustellen.	
+		
+		\item 
+		\begin{tabular}[t]{|p{1.2cm}|*{6}{>{\centering\arraybackslash}p{0.6cm}|}}
+		\hline
+		\code{\textbf{i}} & 0 & 1 & 2 & 3 & 4 & 5 \\
+		\hline
+		\code{\textbf{A[i]}} & 35 & 40 & - & - & - & - \\
+		\hline
+		\end{tabular} \\
+		Knoten 25 wurde gelöscht. \\
+		Knoten 35 ist an die Spitze gerückt. 
+		Anschließend hat er den Platz gewechselt mit Knoten 40, um die Min-Haldeneigenschaft wiederherzustellen.	
+		
+		\item 
+		\begin{tabular}[t]{|p{1.2cm}|*{6}{>{\centering\arraybackslash}p{0.6cm}|}}
+		\hline
+		\code{\textbf{i}} & 0 & 1 & 2 & 3 & 4 & 5  \\
+		\hline
+		\code{\textbf{A[i]}} & 40 & - & - & - & - & - \\
+		\hline
+		\end{tabular} \\
+		Knoten 35 wurde gelöscht. \\
+		Knoten 40 ist an die Spitze gerückt.
+	
+		
+		\item 
+		\begin{tabular}[t]{|p{1.2cm}|*{6}{>{\centering\arraybackslash}p{0.6cm}|}}
+		\hline
+		\code{\textbf{i}} & 0 & 1 & 2 & 3 & 4 & 5 \\
+		\hline
+		\code{\textbf{A[i]}} & - & - & - & - & - & - \\
+		\hline
+		\end{tabular} \\
+		Knoten 40 wurde gelöscht. \\
+		
+	\end{enumerate}
+ 
+\end{teile}	
+\end{aufgabe}
+
+\newpage
+\begin{aufgabe}%4
+\begin{teile}
+	\item
+	\begin{enumerate}[label=\roman*.)]
+		\item Ein Gutschein \code{G} im Wert von 80 kann eingelöst werden mit \code{I = \{1,2,3\}}.
+		\item 81. \\
+		
+	\end{enumerate}	
+	
+	\item
+	\begin{java}
+	public static boolean[][] tErzeugen(int[] waren, 
+	                                    int G       ) {
+    	int n = waren.length;
+    	boolean[][] tabelle = new boolean[n+1][G+1];
+    
+    	// Vorbefuelle die Eintraege fuer k=0 und i=0:
+    	for (int i = 0; i <= n; i++) 
+        	tabelle[i][0] = true;
+    	for (int k = 1; k <= G; k++) 
+        	tabelle[0][k] = false;
+    	 
+    	// Berechne die Eintraege fuer i>0 und k>0:
+    	for (int i = 1; i <= n; i++)
+    	    for (int k = 1; k <= G; k++) {
+              tabelle[i][k] = tabelle[i-1][k];
+              if (k >= waren[i-1]) 
+                  tabelle[i][k] || 
+                  tabelle[i-1][k-waren[i-1]];
+          }
+    	return tabelle;
+	}
+	\end{java}
+	
+	Das Lösungsverfahren entspricht 1:1 dem so genannten \glqq Rucksack-Problem\grqq, das in der Aufgabenstellung, vermutlich zwecks Ablenkung, einfach umgemünzt wird zum \glqq Gutschein-Problem\grqq.
+	Das Verfahren funktioniert wie folgt:
+	
+	
+	Zunächst definieren wir die Methodensignatur so, dass sie eine Reihung aus Waren \code{waren} und einen Gutschein mit Wert \code{G} erhält, und eine zweidimensionale \code{boolean}-Reihung zurückgibt.	
+	Die Tabelle wird iterativ von oben links nach unten rechts aufgebaut. \\	
+	Die Spalten stellen die jeweiligen Werte des Gutscheins dar, von 0 bis \code{G}.\\
+	Die Zeilen repräsentieren die Waren, die eingelöst werden mit dem Gutschein. \\
+	Zuerst wird die erste Zeile und die erste Spalte vorbefüllt wie folgt: 
+	\begin{itemize}
+	\item Die erste Spalte wird vorbefüllt mit \code{true}-Werten, denn ein Gutschein mit Wert 0 (erste Spalte) kann vollständig eingelöst werden mit einer leeren Menge an Waren. 
+	\item Die erste Zeile wird vorbefüllt mit \code{false}-Werten, außer der  Zelle [0][0]. 
+	Denn dort lösen wir ja keine Ware ein. Für einen Gutschein mit Wert 0 mag das noch zu einem vollständig entwerteten Gutschein führen, nicht mehr jedoch für einen Gutschein mit Wert \code{>}0.
+	\end{itemize}
+	
+	Anschließend wird die Tabelle befüllt, indem man für jeden Gutscheinwert \code{k} und jede Ware i entscheidet, ob man den Gutschein einlösen möchte gegen die \code{i}-te Ware, oder eben nicht. Wenn der Preis der \code{i}-ten Ware größer ist als der Gutscheinrestwert \code{k}, kann man sie nicht mehr einlösen. Man kann allerdings noch prüfen, ob es möglich ist, den Gutscheinwert \code{k} vollständig zu entwerten mit den vorherigen Waren bis zur \code{i}-1-ten Ware. Falls das möglich ist, kann man die \code{i}-te Ware entweder weglassen oder einlösen, um den Gutscheinwert \code{k} vollständig zu entwerten.
+
+Die Laufzeit dieses Algorithmus beträgt O(n*G), da man die Tabelle iterativ befüllt von oben links nach unten rechts, wobei man für jeden Gutscheinwert und jede Ware eine konstante Anzahl von Operationen ausführt. 
+
+Jeder Eintrag in \code{tabelle}, der hiermit auf \code{true} gesetzt wurde, löst das Gutschein-Problem. \\
+
+\end{teile}		
+\end{aufgabe}
+
+\newpage
+\begin{aufgabe}%5
+\begin{teile}
+	\item
+	3, 9, 11, 20, 10, 8, 4 \\
+	
+	\item
+	\begin{java}
+	public static boolean enthaelt(int[] r, int s) {
+        int unten = 0;
+        int oben  = r.length;
+        while (unten < oben) {
+            int mitte = unten + (oben - unten) / 2;
+            int wert  = r[mitte];
+            if (wert == s) return true;
+            if (istLinksVon(s, wert)) 
+                oben  = mitte - 1; // -1, weil wir die Mitte schon ausschliessen koennen
+            else
+                unten = mitte;
+        }
+        return false;
+    }
+
+    public static boolean istLinksvon(int a, int b) {
+        boolean aGerade = (a % 2 == 0);
+        boolean bGerade = (b % 2 == 0);
+        if ( aGerade &&  bGerade) return a > b;
+        if (!aGerade && !bGerade) return a < b;
+        return !aGerade;
+    }   
+	\end{java}
+	
+	Die Methode \code{enthält} erhält eine Reihung und ein Suchelement. \\
+	Um eine Lautzeit zu erhalten, die besser ist als O(n) (Linearzeit), bleibt uns nichts anderes übrig als eine binäre Suche zu implementieren, die in O(log(n)) stattfindet. Wir legen also zunächst den Suchbereich fest über die gesamte Reihung. 
+	
+	Innerhalb der \code{while}-Schleife wird der Suchbereich dann iterativ verkleinert. \\
+	Wir wählen als Suchpunkt die Mitte und prüfen, ob wir das Suchelement dort finden. Ist das nicht der Fall, prüfen wir, ob das Suchelement links von dem gerade angeschauten Prüfwert liegt, damit wir unseren Suchbereich eingrenzen zu können.
+	 
+	Dafür wird hier zwecks Eleganz eine Hilfsfunktion \code{istLinksVon} definiert: \\
+    Sie erhält zwei Werte und prüft zunächst, ob sie gerade sind. Die Frage, ob Wert \code{a} links von Wert \code{b} liegt in einer \code{oddAscendingEvenDescending}-Folge, lässt sich nämlich aufgrund der Totalordnung der Folge beantworten in Abhängigkeit davon, ob sie gerade oder ungerade sind. Weiß die Methode das also, vollzieht sie folgende Fallunterscheidung: 
+	\begin{enumerate}
+	\item Sind beide Werte gerade, fragt sie weiter, ob der erste Wert \textit{größer} ist als der zweite. Denn ist er das, liegt er links von \code{b}, da der gerade Anteil absteigend sortiert ist.
+	\item Sind beide Werte ungerade, fragen sie dagegen weiter, ob der erste Wert \textit{kleiner} ist als der zweite. Denn ist er das, liegt er links von \code{b}, da der ungerade Teil absteigend sortiert ist.
+	\item In allen anderen Fällen (\code{a} gerade, \code{b} ungerade / \code{a} ungerade, \code{b} gerade) hängt die Antwort darauf, ob der Suchwert links gelegen ist vom Prüfwert, lediglich ab von der Frage: ist das Suchelement ungerade? Denn ist es das, muss das Prüfelement gerade sein. Und dann müssen wir auf jeden Fall links weitersuchen. Im Gegenfall verhält es sich natürlich umgekehrt.
+	\end{enumerate}
+	So können wir mit jeder Iteration den Suchbereich weiter eingrenzen. Finden wir irgendwann das Suchelement, gibt die Suche \code{true} zurück. Wird der Suchbereich irgendwann 0, da Untergrenze und Obergrenze übereinstimmen (\code{unten = oben}), endet die Suche erfolglos, und gibt entsprechend \code{false} zurück. \\
+		
+	\item 
+	\begin{enumerate}
+	\item Suchbereich: 0 bis 6\footnote{Die Obergrenze ist hier bewusst definiert als \code{r.length}, und nicht \code{r.length-1}, liegt also außerhalb der Reihung. Das ist aber einerseits unbedenklich, da auf diese Position nicht zugegriffen wird, und andererseits wichtig, da es verhindert, dass bei einer einelementigen Reihung die Suche sofort beendet würde, da Ober- und Untergrenze gleich wären, nämlich: 0.} \\
+	Mitte = 3 \\
+	Prüflement = 8 → \textcolor{red}{Nicht gefunden!} \\
+	Liegt Suchelement 4 links von Prüfelement 8? Nein. \\
+	Suche wird fortgesetzt im Bereich rechts von 8.
+	\item Suchbereich: 4 bis 6 \\
+	Mitte = 5 \\
+	Prüfelement = 2 $\rightarrow$ \textcolor{red}{Nicht gefunden!} \\
+	Liegt Suchelement 4 links von Prüfelement 2? Ja. \\
+	Suche wird fortgesetzt im Bereich links von  2.
+	\item Suchbereich: 4 bis 4 \\
+	Mitte = 4 \\
+	Prüfelement = 4 → \textcolor{green!50!black}{Gefunden!} \\
+	\end{enumerate}
+	
+	\item
+	Wie bereits erwähnt verwenden wir die binäre Suche. Da diese den Suchbereich in jedem Iterationsschritt um die Hälfte verringert, findet sie statt in logarithmischer Zeit, hat also den Aufwand O(log(n)).
+	
+\end{teile}	
+\end{aufgabe}
