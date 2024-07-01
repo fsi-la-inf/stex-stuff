@@ -1,0 +1,3 @@
+[submodule "authorchapters"]
+	path = authorchapters
+	url = https://github.com/motrellin/authorchapters.git
