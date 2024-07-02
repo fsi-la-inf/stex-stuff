@@ -1,3 +1,6 @@
 [submodule "authorchapters"]
 	path = authorchapters
 	url = https://github.com/motrellin/authorchapters.git
+[submodule "lst-robotkarol"]
+	path = lst-robotkarol
+	url = https://github.com/motrellin/lst-robotkarol.git
