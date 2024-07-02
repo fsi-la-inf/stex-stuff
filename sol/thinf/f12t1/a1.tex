@@ -2,13 +2,11 @@
 
 Definiere zunächst
 \begin{align*}
-	A_1 & := \{ (i,t) \in \Nat \times \Nat \,|\, M_i \text{ hält auf Eingabe
-	i nicht innerhalb von t Schritten } \} \\
-	A_2 & := \{ (i,x) \in \Nat \times \Nat \,|\, M_i \text{ hält nicht auf
-	die Eingabe } x\} \\
-	A_3 & := \{ i \in \Nat \,|\, M_i \text{ berechnet } f
-	\colon \Nat \to \Nat \text{ und } \exists x \in
-	\Nat .\, f(x) = x \}
+  A_1 & \coloneqq \{ (i,t) \in \Nat \times \Nat \mid M_i\ \text{hält auf Eingabe}\ i\ \text{nicht innerhalb von}\ t\ \text{Schritten} \} \\
+  A_2 & \coloneqq \{ (i,x) \in \Nat \times \Nat \mid M_i\ \text{hält nicht auf die Eingabe}\ x\} \\
+  A_3 & \coloneqq \{ i \in \Nat \mid M_i\ \text{berechnet}\ f
+        \colon \Nat \to \Nat\ \text{und}\ \exists x \in
+        \Nat .\, f(x) = x \}
 \end{align*}
 
 \paragraph{$A_1$ ist entscheidbar.}
@@ -48,12 +46,12 @@ Folgende NTM $N$ semi-entscheidet $A_3$:
 \paragraph{$A_3$ ist nicht entscheidbar.}
 Es gilt:
 \[
-	A_3 = \{ i \in \Nat \,|\, M_i \text{ berechnet } f \in \{f \,|\,
+	A_3 = \{ i \in \Nat \mid M_i\ \text{berechnet} f \in \{f \mid
 	\exists x \in \Nat .\, f(x) = x\} \}
 \]
 Definiere nun
 \[
-	S := \{f \,|\, \exists x \in \Nat .\, f(x) = x\}
+	S \coloneqq \{f \mid \exists x \in \Nat .\, f(x) = x\}
 \]
 Es gilt:
 \begin{align*}
