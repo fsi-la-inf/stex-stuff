@@ -1,0 +1,42 @@
+\subsubsectionwithauthor[author={Mika Landeck},email={mika.landeck@fau.de}]{Aufgabe 3: Entscheidbarkeit}
+
+\paragraph{(a)}m
+	$L_1 - L_2 = \{ w \in L_1 \vert w \notin L_2\}$ Es handelt sich bei $L_1 - L_2$ also um die Sprache aller Wörter aus $L_1$, die in $L_2$ nicht enthalten sind.
+
+	Das Wortproblem für reguläre Sprachen ist entscheidbar (z.B. durch einen entsprechenden DEA) und zwar in $O(n)$, da die Eingabe lediglich einmal abgelaufen werden muss. Der CYK-Algorithmus liefert den Nachweis, dass auch das Wortproblem für kontextfreie Grammatiken mit einer Zeitkomplexität von $O(n^3)$ entscheidbar ist. Somit sind also $L_1$ und $L_2$ von einer deterministische Turingmaschine (DTM) in polynomieller Zeit entscheidbar.
+	
+	Wir können also eine DTM bauen, die folgendermaßen funktioniert:
+	\begin{itemize}
+		\item
+		Prüfe in polynomieller Zeit, ob die Eingabe ein Wort in $L_1$ ist.
+		\item 
+		Falls diese Prüfung zutreffend war, prüfe weiter, ob die Eingabe ein Wort in $L_2$ ist. Auch das erfolgt nach der vorherigen Begründung in polynomieller Zeit.
+		\item
+		Ergab die erste Prüfung $wahr$ und die zweite Prüfung $falsch$, ist die Eingab ein Wort in $L$. Diese Fallunterschiedung ist problemlos in konstanter Zeit feststellbar.
+	\end{itemize}
+	
+	Die Sprache $L_1 - L_2$ kann somit durch eine DTM in polynomieller Zeit ($O(n)+O(n^3)+O(1)=O(n^3)$) entschieden werden, also liegt $L_1 - L_2$ in $\mathcal{P}$.
+	
+\paragraph{(b)}m
+	$L \cup \overline{L} = L \cup (\Sigma^*\setminus L) = \Sigma^*$\\
+	Also ist $L \cup \overline{L}$ die Sprache \textit{aller} Wörter. Diese Sprache ist regulär und somit entscheidbar.\\
+	$L \cap \overline{L} = L \cap (\Sigma^*\setminus L) = \varnothing $\\
+	Also ist $L \cap \overline{L}$ die \textit{leere} Sprache. Auch diese Sprache ist regulär und somit entscheidbar.
+
+	Somit sind $L \cap \overline{L}$ und $L \cup \overline{L}$ für alle Sprachen $L$ entscheidbar, also insbesondere auch wenn $L$ semi-entscheidbar ist.
+
+\paragraph{(c)}m
+	Da $L$ semi-entscheidbar ist, gibt es eine Turing Maschine (TM) $M_1$, die genau dann auf Eingabe $w$ hält und akzeptiert, wenn $w \in L$ gilt.\\
+ 	Analog gilt für $\overline{L}$, dass es eine TM $M_2$ gibt, die genau dann auf Eingabe $w$ hält und akzeptiert, wenn $w \in \overline{L}$ gilt.
+
+	Man kann also eine TM $M$ mit zwei Bändern konstruieren, welche zunächst die Eingabe $w$ auf das zweite Band kopiert und anschließend durch abwechselnde Schritte auf dem ersten Band $M_1$ und auf dem zweiten Band $M_2$ simuliert. Falls $M_1$ hält und akzeptiert, tut auch $M$ dies; falls $M_2$ hält und akzeptiert, hält $M$ und akzeptiert \textit{nicht}.\\
+	Diese TM hält auf jeder Eingabe $w \in \Sigma^*$, da entweder $w \in L$ und somit $M_1$ hält oder $w \in \overline{L}$ und somit $M_2$ hält. $M$ akzeptiert genau die Wörter, die auch $M_1$ akzeptiert, also genau die Eingaben $w \in L$.\\
+	Also ist $L$ durch $M$ entscheidbar.
+	
+\paragraph{(d)}m	
+	Die Aussage ist korrekt. Da $L$ in $\mathcal{NP}$ liegt, gibt es eine NTM $M$, die $L$ in polynomieller Laufzeit entscheidet. Generell sind NTM und DTM aber gleichmächtig. Somit gibt es eine DTM $M'$, welche die gleiche Sprache wie $M$ erkennt (dabei allerdings deutlich mehr Berechnungsschritte benötigen kann), und damit auch $L$ entscheidet.\\
+	Folglich ist $L$ entscheidbar.
+	
+
+
+\newpage
