@@ -1,0 +1,46 @@
+\subsubsectionwithauthor[author={Mika Landeck},email={mika.landeck@fau.de}]{Aufgabe 3: Entscheidbarkeit}
+
+\paragraph{(a)}m
+	Formulierung des Entscheidungsproblems als Wortproblem von\\
+	$L=\{c(M)|\ M\ ist\ TM \wedge (\forall n \leq 42: \exists w \in \Sigma^*: |w|=n \wedge w \in L(M))\}$
+
+	Hier soll nicht die Entscheidbarkeit widerlegt, sondern die Semientscheidbarkeit bewiesen werden. Daher wird nicht \textit{von einem Problem reduziert}, sondern stattdessen \textit{ein Entscheidungsverfahren aufgezeigt}.
+	
+	Dazu wird eine \textit{nichtdeterministische 3-Band} TM $M'$ skizziert, die alle $w \in L$ akzeptiert:
+	\begin{enumerate}
+		\item Syntaxcheck, ob $w=c(M)$ mit TM $M$, auf Band 1
+		\item Simulieren von $M$ mit Eingabe $\varepsilon$ auf Band 2: Falls $M$ hält und akzeptiert, fortfahren mit Schritt 3; ansonsten halten und nicht akzeptieren
+		\item Nichtdeterministische Auswahl eines Buchstaben $x_i \in \Sigma$ und Schreiben von $x_i$ auf Band 2, Zeiger eins nach rechts setzen
+		\item $n$-maliges Wiederholen von Schritt 2, beginnen mit $n=1$ auf Band 3
+		\item Simulieren von $M$ mit Eingabe $x_1x_2...x_n$ auf Band 2 (Zeiger dafür zuerst auf $x_1$ setzen): Falls $M$ hält und akzeptiert, fortfahren mit Schritt 6; ansonsten halten und nicht akzeptieren
+		\item $n$ um eins erhöhen auf Band 3 und solange $n \leq 42$ zu Schritt 4 zurückspringen: Falls $n > 42$ halten und akzeptieren
+	\end{enumerate}
+
+	\underline{Anmerkungen zu $M'$:} Da DTM und NTM, sowie Einband- und Mehrband-Maschinen gleich mächtig sind, spielt es keine Rolle welche Anzahl an Bändern und welchen Typ von Maschine man hier wählt. Die \textit{nichtdeterministische} Funktionsweise von $M'$ stellt sicher, dass die in Schritt 3 stückweise "geratenen“ Wörter immer genau diejenigen von Länge $n$ sind, welche in $L(M)$ liegen (Vorstellung vom allwissenden Orakel).
+
+	Die TM $M'$ akzeptiert alle $w \in L$, somit ist $L$ semi-entscheidbar.
+	
+	\vspace{0.3cm}
+
+\paragraph{(b)}m
+	\begin{quote}	
+		\textbf{Satz von Rice (für formale Sprachen)}\\
+		Sei $\mathcal{S} $ eine nicht leere, echte Teilmenge der Menge aller formalen Sprachen.\\
+		Dann ist die folgende formale Sprache unentscheidbar:\\
+		$L_\mathcal{S}  = \{c(M) |\ M\ ist\ TM\ und\ L(M)\ liegt\ in\ \mathcal{S}\}$
+	\end{quote}
+	
+	\underline{Umschreiben von $L$:}\\
+	$L=\{c(M)|\ M\ ist\ TM \wedge L(M) \in \mathcal{S}$ mit $\mathcal{S} := \{L\subseteq \Sigma^* | \forall n \leq 42: \exists w \in \Sigma^*: |w|=n \wedge w \in L\}$
+
+	\underline{Nachweis der Nichttrivialität der Menge $\mathcal{S}$:}
+
+	$\Sigma^* \in \mathcal{S}$, da in $\Sigma^*$ Worte mit beliebiger Länge liegen $\Rightarrow \mathcal{S} \neq \varnothing$.
+
+	$\{\varepsilon\} \notin \mathcal{S}$, da in $\{\varepsilon\}$ z.B. kein Wort der Länge 3 liegt $\Rightarrow \mathcal{S}$ ist nicht die Menge aller formalen Sprachen.
+
+	Somit folgt nach dem Satz von Rice, dass $L$ nicht entscheidbar ist.
+
+
+
+\newpage
