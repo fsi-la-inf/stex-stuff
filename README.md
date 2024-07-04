@@ -1,7 +1,7 @@
 # Lösungsversuche
 ## Aufbau und Motivation
 
-Ziel dieses Repositorys ist es, eine studentische
+Ziel dieses Repositories ist es, eine studentische
 Sammlung an Lösungsvorschlägen zu den Aufgaben vergangener 1. Staatsexamen im
 Fach Informatik in Bayern zu erstellen. Wir wollen dadurch kooperative und
 nachhaltige Vorbereitung fördern. Da wir leider kein Urheberrecht an den
