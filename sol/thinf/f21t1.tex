@@ -1,0 +1,92 @@
+\subsection{F21T1}
+
+\subsubsection{Aufgabe 1}
+
+\paragraph{Zuordnung der NFA's}
+\begin{tabular}{|c|c|}
+	\hline
+	NFA & Sprache \\
+	\hline
+	$N_1$ & $L_6$ \\
+	\hline
+	$N_2$ & $L_8$ \\
+	\hline
+	$N_3$ & $L_2$ \\
+	\hline
+	$N_4$ & $L_12$ \\
+	\hline
+	$N_5$ & $L_8$ \\
+	\hline
+	$N_6$ & $L_11$ \\
+	\hline
+\end{tabular}
+\par
+
+\paragraph{Beweis der Nicht-Regularität von $L_3$}
+Angenommen, $L_3$ wäre regulär, dann gibt es nach Pumping-Lemma eine Zahl $n
+\geq 1$, sodass für jedes Wort $w \in L_3$ mit $|w| \geq n$ drei Teilwörter
+$x,y,z \in \Sigma^*$ existieren, sodass \eqref{thinf:reg:pl-partition},
+\eqref{thinf:reg:pl-beginning}, \eqref{thinf:reg:pl-midnotempty} und
+\eqref{thinf:reg:pl-pumping} gelten.
+
+Sei also $n$ die Pumping-Zahl. Betrachte das Wort $w := a^{2^n} \in L_3$. Es
+gilt $|w| = 2^n \geq n$. Es gibt also $x,y,z \in \Sigma^*$, sodass
+\eqref{thinf:reg:pl-partition}, \eqref{thinf:reg:pl-beginning},
+\eqref{thinf:reg:pl-midnotempty} und \eqref{thinf:reg:pl-pumping} gelten.
+
+Wegen \eqref{thinf:reg:pl-beginning} folgt, dass ein $k \in \Nat$ existiert,
+sodass $y = a^k$. Wegen \eqref{thinf:reg:pl-midnotempty} folgt direkt $k \geq
+1$. Wegen \eqref{thinf:reg:pl-pumping} müsste nun auch gelten, dass $w' := xy^2z
+\in L_3$. Dies ist aber nicht der Fall, wie folgende Rechnung zeigt:
+\begin{align*}
+	w'
+	& = xy^2z
+	= a^{2^n + k} \notin L_3
+\end{align*}
+Die Folgerung im letzten Schritt ergibt sich aus der Tatsache, dass $2^n + k
+\neq 2^{n'}$ für alle $n' \in \Nat$ ist, denn dafür müsste $k \geq 2^n$ gelten,
+was wegen $k \leq n$ nicht möglich ist. Also ist $w' \notin L_3$, was im
+Widerspruch zur Annahme steht, dass $L_3$ regulär ist.
+\par
+
+\paragraph{Potenzmengenkonstruktion}
+Das Vorgehen ist wie folgt:
+Man startet zunächst beim neuen Startzustand $\{z_0\}$. Die Übergänge ergeben
+sich durch folgende Formel:
+\[
+	\forall zs \subseteq Z, a \in \Sigma.\,
+	\delta'(zs,a) := \{z \in Z \mid \exists z' \in zs.\, \delta(z',a) = z\}
+\]
+Die Menge der Endzustände lässt sich wie folgt berechnen:
+\[
+	F' := \{zs \in Z \mid zs \cap F \neq \emptyset\}
+\]
+\begin{center}
+\begin{tikzpicture}[shorten >=1pt,node distance=2cm,on grid,auto]
+	\node[state,initial] (q_0) {$\{z_0\}$};
+	\node[state] (q_1) [right=of q_0] {$\{z_1\}$};
+	\node[state] (q_03) [above=of q_0] {$\{z_1,z_3\}$};
+	\node[state] (q_25) [above=of q_1] {$\{z_2,z_5\}$};
+	\node[state] (q_5) [right=of q_1] {$\{z_5\}$};
+	\node[state] (q_14) [above=of q_25] {$\{z_1,z_4\}$};
+	\node[state] (q_err) [right=of q_5] {$\{\}$};
+	\node[state] (q_24) [above=of q_err] {$\{z_2,z_4\}$};
+	\path[->]
+		(q_0) edge node {$a$} (q_1)
+		(q_0) edge node {$b$} (q_03)
+		(q_1) edge node {$a$} (q_25)
+		(q_1) edge node {$b$} (q_5)
+		(q_03) edge node {$a$} (q_14)
+		(q_03) edge [loop above] node {$b$} (q_03)
+		(q_25) edge node {$a$} (q_24)
+		(q_25) edge node {$b$} (q_5)
+		(q_5) edge node {$a$} (q_err)
+		(q_5) edge [loop below] node {$b$} (q_5)
+		(q_14) edge node {$a$} (q_25)
+		(q_14) edge node {$b$} (q_5)
+		(q_24) edge [loop above] node {$a$} (q_24)
+		(q_24) edge node {$b$} (q_err)
+		(q_err) edge [loop below] node {$a,b$} (q_err);
+\end{tikzpicture}
+\end{center}
+\par
