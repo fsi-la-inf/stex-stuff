@@ -124,3 +124,66 @@ $O(k)$ niedergeschrieben werden.
 		  = z \\
 		  &\iff f(K) \in DPCP
 \end{align*}
+
+\subsubsection{Aufgabe 4}
+
+\paragraph{Umwandlung von Klauseln mit 0 Literalen}
+Diese Klauseln evaluieren zu $0$. Folglich werden die folgenden Klauseln
+generiert:
+\[
+	\left\{\{x,y,z\} \mid x \in \{a,\lnot a\}, y \in \{b,\lnot b\}, z \in
+	\{c,\lnot b\}\right\}
+\]
+Diese Klauseln können nicht alle gemeinsam erfüllt werden.
+\par
+\paragraph{1 Literal}
+Sei dieses eine Literal $x$. Generiere folgende Klauseln:
+\[
+	\left\{\{x,y,z\} \mid y \in \{b,\lnot b\}, z \in
+	\{c,\lnot b\}\right\}
+\]
+\par
+\paragraph{2 Literale}
+Seien die beiden Literale $x$ und $y$. Generiere folgende Klauseln:
+\[
+	\left\{\{x,y,z\} \mid z \in
+	\{c,\lnot b\}\right\}
+\]
+\par
+\paragraph{3 Literale}
+Kopiere die Klausel in die gerade zu generierende Genau-3-SAT-Formel.
+\par
+
+Die Generierung der neuen Klauseln ist pro Klausel in $O(1)$ schaffbar, damit
+hängt die Komplexität der Umwandlung linear von der Anzahl der Klauseln ab, ist
+also in polynomieller Zeit berechenbar. Sie ist auch offensichtlich total und
+korrekt.
+
+Da $3-CNF-SAT$ zu $GENAU-3-CNF-SAT$ reduziert, ist letzteres Problem mindestens
+so schwer wie $3-CNF-SAT$. Da $3-CNF-SAT$ NP-vollständig, also insbesondere
+NP-hart ist, folgt, dass $3-CNF-SAT$ und damit auch $GENAU-3-CNF-SAT$ mindestens
+in NP liegt. Es fehlt also nur noch der Beweis, dass $GENAU-3-CNF-SAT$
+nicht-deterministisch in polynomieller Zeit entscheidbar ist. Ein entsprechender
+Algorithmus verhält sich wie folgt:
+\begin{enumerate}
+	\item
+		Wähle nicht-deterministisch eine erfüllende Belegung $\kappa$.
+	\item
+		Überprüfe für jede der $k$ Klauseln, ob eines der drei Literale
+		von $\kappa$ erfüllt wird. ($O(k)$)
+	\item
+		Falls das für alle Klauseln gilt, akzeptiere, ansonsten
+		verweigere.
+\end{enumerate}
+
+Damit ist $GENAU-3-CNF-SAT$ in NP, also NP-vollständig.
+
+\begin{itemize}
+	\item
+		Bezüglich i): Dann wäre $GENAU-3-CNF-SAT$ in P, woraus direkt $P = NP$ folgt.
+	\item
+		Bezüglich ii): Dann wäre $GENAU-3-CNF-SAT$ nicht in P, woraus
+		direkt $P \neq NP$ folgt.
+	\item
+		Bezüglich iii): Keine Aussage möglich.
+\end{itemize}
