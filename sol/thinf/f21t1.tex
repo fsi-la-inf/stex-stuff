@@ -90,3 +90,37 @@ Die Menge der Endzustände lässt sich wie folgt berechnen:
 \end{tikzpicture}
 \end{center}
 \par
+
+\subsubsection{Aufgabe 3}
+
+Die Folge $1,1,1,1$ ist keine Lösung von $K$: Das Wort $x$ ist länger als die
+Wörter $y$ oder $z$, und $y$ und $z$ unterscheiden sich im ersten Buchstaben.
+
+Die Folge $2,2,2,2$ ist eine Lösung von $K$, da dann $y = z$ gilt.
+
+PCP lässt sich auf DPCP wie folgt reduzieren:
+\[
+	f(K) :=
+	\begin{cases}
+		(x_1,y_1,1), \ldots, (x_k,y_k,k) & \text{falls } K = (x_1,y_1), \ldots, (x_k,y_k) \\
+		\epsilon & \text{sonst}
+	\end{cases}
+\]
+Dabei sei o.B.d.A. angenommen, dass $\Sigma \cap \Nat = \emptyset$.
+
+\paragraph{$f$ ist total} Da $f$ für jede Eingabe definiert ist, ist $f$ total.
+\par
+
+\paragraph{$f$ ist berechenbar} Ein Syntaxcheck zu Beginn ist möglich. Das
+Ergänzen eines Tupels ist in $O(1)$ möglich, also kann der neue Ausdruck in
+$O(k)$ niedergeschrieben werden.
+\par
+
+\paragraph{$f$ ist korrekt}
+\begin{align*}
+	K \in PCP &\iff K = \ldots \land \exists m.\, x = y \\
+		  &\iff f(K) = \ldots \land \exists m.\, x = y\\
+		  &\iff f(K) = \ldots \land \exists m.\, x = y \lor x = z \lor y
+		  = z \\
+		  &\iff f(K) \in DPCP
+\end{align*}
