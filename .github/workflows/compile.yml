@@ -17,4 +17,9 @@ jobs:
       - name: Compile LaTeX document
         uses: xu-cheng/latex-action@v3
         with:
-          root_file: main.tex
+          root_file: |
+            aud.tex
+            thinf.tex
+            db.tex
+            sosy.tex
+            ddi.tex
