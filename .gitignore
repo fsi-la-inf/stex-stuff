@@ -11,3 +11,5 @@ main.pdf
 *.nav
 *.snm
 out/
+!out/index.html
+!out/styles.css
