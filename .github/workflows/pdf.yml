@@ -37,8 +37,6 @@ jobs:
             db.pdf
             sosy.pdf
             ddi.pdf
-            out/index.html
-            out/style.css
 
   deploy:
     runs-on: ubuntu-latest
