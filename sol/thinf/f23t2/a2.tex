@@ -24,7 +24,7 @@
 	
 	\underline{Ableitungsbaum:}
 
-	\includegraphics[scale=0.8]{Ableitungsbaum}
+	\includegraphics[scale=0.8]{sol/thinf/f23t2/Ableitungsbaum}
 	
 \paragraph{(c)}m
 	$L = \{w1^n v \mid n \in \mathbb{N}, w, v \in \{0,2\}^*, n = |w|_0 \cdot |v|_2 \}$		
@@ -55,27 +55,27 @@
 
 	\underline{Fall 1.1:}\\
 	Man erhält durch pumpen mit $i = 2$ das Wort $z'=uv^2wx^2y=0^{p+2k}1^{p^2+2(l+m)}2^{p}$.\\
-	Angenommen $k\geq 1$. Damit $z' \in L$ gilt, muss $l+m = k*p$ und somit $k+l+m=k*(p+1)>p$ gelten. $\mbox{\Lightning}$\\
-	Folglich muss $k=0$ sein. Aber es muss wieder $l+m = k*p = 0$ gelten und somit $k+l+m=0$. $\mbox{\Lightning}$
+	Angenommen $k\geq 1$. Damit $z' \in L$ gilt, muss $l+m = k*p$ und somit $k+l+m=k*(p+1)>p$ gelten. Widerspruch!\\
+	Folglich muss $k=0$ sein. Aber es muss wieder $l+m = k*p = 0$ gelten und somit $k+l+m=0$. Widerspruch!
 
 	\underline{Fall 1.2:}\\
 	Man erhält durch pumpen mit $i = 2$ das Wort $z'=uv^2wx^2y=0^{p+2(k+l)}1^{p^2+2m}2^{p}$.\\
-	Angenommen $k\geq 1$. Damit $z' \in L$ gilt, muss $m = (k+l)*p$ und somit $k+l+m=l*(p+1)+k*(p+1)>p$ gelten. $\mbox{\Lightning}$\\
+	Angenommen $k\geq 1$. Damit $z' \in L$ gilt, muss $m = (k+l)*p$ und somit $k+l+m=l*(p+1)+k*(p+1)>p$ gelten. Widerspruch!\\
 	Folglich muss $k=0$ sein. Aber es muss wieder $m = (k+l)*p = l*p$ gelten.\\
-	Ist nun $l\geq 1$ gilt $k+l+m=l*(p+1)>p$. $\mbox{\Lightning}$\\
-	Falls aber $l=0$, ist auch $k+l+m=0$. $\mbox{\Lightning}$
+	Ist nun $l\geq 1$ gilt $k+l+m=l*(p+1)>p$. Widerspruch!\\
+	Falls aber $l=0$, ist auch $k+l+m=0$. Widerspruch!
 
 	\underline{Fall 2.1:}\\
 	Man erhält durch pumpen mit $i = 2$ das Wort $z'=uv^2wx^2y=0^{p}1^{p^2+2k}2^{p+2(l+m)}$.\\
-	Angenommen $l\geq 1$. Damit $z' \in L$ gilt, muss $k = (l+m)*p$ und somit $k+l+m=l*(p+1)+m*(p+1)>p$ gelten. $\mbox{\Lightning}$\\
+	Angenommen $l\geq 1$. Damit $z' \in L$ gilt, muss $k = (l+m)*p$ und somit $k+l+m=l*(p+1)+m*(p+1)>p$ gelten. Widerspruch!\\
 	Folglich muss $l=0$ sein. Aber es muss wieder $k = (l+m)*p = m*p$ gelten.\\
-	Ist nun $m\geq 1$ gilt $k+l+m=m*(p+1)>p$. $\mbox{\Lightning}$\\
-	Falls aber $m=0$, ist auch $k+l+m=0$. $\mbox{\Lightning}$
+	Ist nun $m\geq 1$ gilt $k+l+m=m*(p+1)>p$. Widerspruch!\\
+	Falls aber $m=0$, ist auch $k+l+m=0$. Widerspruch!
 
 	\underline{Fall 2.2:}\\
 	Man erhält durch pumpen mit $i = 2$ das Wort $z'=uv^2wx^2y=0^{p}1^{p^2+2(k+l)}2^{p+2m}$.\\
-	Angenommen $m\geq 1$. Damit $z' \in L$ gilt, muss $k+l = m*p$ und somit $l+m+k=m*(p+1)>p$ gelten. $\mbox{\Lightning}$\\
-	Folglich muss $m=0$ sein. Aber es muss wieder $k+l = m*p = 0$ gelten und somit $l+m+k=0$. $\mbox{\Lightning}$
+	Angenommen $m\geq 1$. Damit $z' \in L$ gilt, muss $k+l = m*p$ und somit $l+m+k=m*(p+1)>p$ gelten. Widerspruch!\\
+	Folglich muss $m=0$ sein. Aber es muss wieder $k+l = m*p = 0$ gelten und somit $l+m+k=0$. Widerspruch!
 
 	In jedem Fall ergibt sich ein Widerspruch zur Annahme $L$ sei kontextfrei. $\Rightarrow L$ ist nicht kontextfrei.
 		
