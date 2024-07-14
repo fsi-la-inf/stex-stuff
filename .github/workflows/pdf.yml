@@ -20,13 +20,23 @@ jobs:
       - name: Compile LaTeX document
         uses: xu-cheng/latex-action@v3
         with:
-          root_file: main.tex
+          root_file: |
+            aud.tex
+            thinf.tex
+            db.tex
+            sosy.tex
+            ddi.tex
 
       - name: Upload PDF file
         uses: actions/upload-artifact@v4
         with:
           name: main-pdf
-          path: main.pdf
+          path: |
+            aud.pdf
+            thinf.pdf
+            db.pdf
+            sosy.pdf
+            ddi.pdf
 
   deploy:
     runs-on: ubuntu-latest
@@ -39,23 +49,11 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: main-pdf
-          path: ./artifact
-
-      - name: Create index.html
-        run: |
-          echo '<!DOCTYPE html>' > ./artifact/index.html
-          echo '<html>' >> ./artifact/index.html
-          echo '<head>' >> ./artifact/index.html
-          echo '  <meta http-equiv="refresh" content="0; url=main.pdf">' >> ./artifact/index.html
-          echo '</head>' >> ./artifact/index.html
-          echo '<body>' >> ./artifact/index.html
-          echo '  <p>If you are not redirected, <a href="main.pdf">click here</a>.</p>' >> ./artifact/index.html
-          echo '</body>' >> ./artifact/index.html
-          echo '</html>' >> ./artifact/index.html
+          path: ./out
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./artifact
+          publish_dir: ./out
           publish_branch: gh-pages

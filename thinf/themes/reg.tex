@@ -1,0 +1,78 @@
+\section{Reguläre Sprachen}
+
+\begin{definition}[Reguläre Grammatik]
+	Eine Grammatik $G = (V, \Sigma, P, S)$ heißt \Index{regulär}, alle durch
+	$P$ induzierten Regeln von einer der folgenden Formen sind:
+	\begin{align*}
+		A & \rightarrow aB & A,B \in V, a \in \Sigma \\
+		A & \rightarrow a & a \in \Sigma \\
+		A & \rightarrow \epsilon
+	\end{align*}
+\end{definition}
+
+\begin{definition}[Reguläre Sprache]
+	Eine Sprache $L$ heißt \Index{regulär}, wenn es eine reguläre Grammatik
+	$G$ gibt, sodass $L = L(G)$.
+\end{definition}
+
+\begin{theorem}[Pumping-Lemma]
+	Sei $L$ eine formale Sprache.
+	Wenn $L$ regulär ist, dann gibt es eine Zahl $n \geq 1$, sodass für
+	jedes Wort $w \in L$ mit $|w| \geq n$ drei Teilwörter $x,y,z \in
+	\Sigma^*$ existieren, sodass
+	\begin{align}
+		w & = xyz \tag{PL-Partition}\label{thinf:reg:pl-partition} \\
+		|xy| & \leq n \label{thinf:reg:pl-beginning} \\
+		y & \neq \epsilon \label{thinf:reg:pl-midnotempty} \\
+		\forall p \in \Nat.\, xy^pz & \in L
+		\tag{PL-Pumping}\label{thinf:reg:pl-pumping}
+	\end{align}
+\end{theorem}
+
+\begin{example}
+	\label{thinf:reg:pl-example-1}
+	Die Sprache aus \eqref{thinf:cf:lang_1} ist nicht regulär. Dies lässt
+	sich zum Beispiel durch einen Widerspruchsbeweis mittels Pumping-Lemma
+	zeigen.
+
+	Sei $n \geq 1$ die Pumping-Zahl. Es gilt
+	\begin{align*}
+		w & := a^n b c^n \in L \\
+		|w| & = 2n + 1 > n
+	\end{align*}
+
+	Es gibt also $x,y,z \in \Sigma^*$, sodass
+	\eqref{thinf:reg:pl-partition}, \eqref{thinf:reg:pl-beginning},
+	\eqref{thinf:reg:pl-midnotempty} und \eqref{thinf:reg:pl-pumping}
+	gelten.
+
+	Wegen \eqref{thinf:reg:pl-beginning} folgt, dass ein $k \in \Nat$ existiert, sodass
+	\begin{equation}
+		\label{thinf:reg:pl-example-1:eq-1}
+		y = a^k
+	\end{equation}
+
+	Wegen \eqref{thinf:reg:pl-midnotempty} und
+	\eqref{thinf:reg:pl-example-1:eq-1} folgt direkt
+	\begin{equation}
+		\label{thinf:reg:pl-example-1:eq-2}
+		k \geq 1
+	\end{equation}
+
+	Wegen \eqref{thinf:reg:pl-pumping} müsste nun auch gelten, dass
+	\begin{equation}
+		w' := xy^0z \in L
+	\end{equation}
+
+	Dies ist aber nicht der Fall, wie folgende Rechnung zeigt:
+	\begin{align*}
+		w'
+		& = xy^0z \\
+		& = xz \\
+		& = a^{n - k} b c^n \\
+	\end{align*}
+
+	Aus \eqref{thinf:reg:pl-example-1:eq-2} folgt $n - k \neq n$, und damit ist $w' \notin L$, was im
+	Widerspruch zur Aussage des Pumping-Lemmas steht. Folglich kann $L$ nicht
+	regulär sein.
+\end{example}
