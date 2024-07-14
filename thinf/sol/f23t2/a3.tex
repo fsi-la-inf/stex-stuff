@@ -1,6 +1,6 @@
 \subsubsectionwithauthor[author={Mika Landeck},email={mika.landeck@fau.de}]{Aufgabe 3: Entscheidbarkeit}
 
-\paragraph{(a)}m
+\paragraph{(a)}
 	Formulierung des Entscheidungsproblems als Wortproblem von\\
 	$L=\{c(M)|\ M\ ist\ TM \wedge (\forall n \leq 42: \exists w \in \Sigma^*: |w|=n \wedge w \in L(M))\}$
 
@@ -22,16 +22,16 @@
 	
 	\vspace{0.3cm}
 
-\paragraph{(b)}m
+\paragraph{(b)}
 	\begin{quote}	
 		\textbf{Satz von Rice (für formale Sprachen)}\\
-		Sei $\mathcal{S} $ eine nicht leere, echte Teilmenge der Menge aller formalen Sprachen.\\
+		Sei $\mathcal{S} $ eine nicht leere, echte Teilmenge der Menge aller formalen semi-entscheidbaren Sprachen.\\
 		Dann ist die folgende formale Sprache unentscheidbar:\\
-		$L_\mathcal{S}  = \{c(M) |\ M\ ist\ TM\ und\ L(M)\ liegt\ in\ \mathcal{S}\}$
+		$L_\mathcal{S}  = \{c(M) \mid M\ \text{ist TM und}\ L(M) \in \mathcal{S}\}$
 	\end{quote}
 	
 	\underline{Umschreiben von $L$:}\\
-	$L=\{c(M)|\ M\ ist\ TM \wedge L(M) \in \mathcal{S}$ mit $\mathcal{S} := \{L\subseteq \Sigma^* | \forall n \leq 42: \exists w \in \Sigma^*: |w|=n \wedge w \in L\}$
+	$L=\{c(M) \mid M\ \text{ist TM}\ \land L(M) \in \mathcal{S}\}$ mit $\mathcal{S} := \{L \mid \forall n \leq 42.\, \exists w \in \Sigma^*.\, |w|=n \land w \in L\}$
 
 	\underline{Nachweis der Nichttrivialität der Menge $\mathcal{S}$:}
 

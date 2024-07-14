@@ -74,8 +74,8 @@
 	Der Fall, dass die A's, B's und somit auch die D's, E's jeweils eine ungerade Anzahl haben, wird durch die Regel $S \rightarrow abTde$ abgedeckt.
 	\vspace{0.3cm}
 	
-\paragraph{(d)}m
-	$L_4 = \{w_1c^nw_2 \mid n \geq 0, n \in \mathbb{N}, w_1,w_2 \in \{a,b\}^*, \#_a(w_1)>n\ und\ \#_b(w_2)<n\}$	
+\paragraph{(d)}
+	$L_4 = \{w_1c^nw_2 \mid n \geq 0, n \in \mathbb{N}, w_1,w_2 \in \{a,b\}^*, \#_a(w_1)>n \land \#_b(w_2)<n\}$	
 
 	\begin{quote}
 	\textbf{Pumpinglemma für kontextfreie Sprachen} \\
@@ -91,7 +91,7 @@
 
 	Nehmen wir an $L_4$ sei kontextfrei, dann können wir das Pumpinglemma anwenden und folgern:
 	
-	Sei $p \in \mathbb{N}$ die Pumpingzahl. Wir wählen $z = a^{p+1}c^pb^{p-1} \in L_4$ mit $|z| = 3p > p$.\\
+	Sei $p \in \mathbb{N}$ die Pumpingzahl. Wir wählen $z := a^{p+1}c^pb^{p-1} \in L_4$ mit $|z| = 3p > p$. Somit gibt es eine Zerlegung wie im Pumping-Lemma. \\
 	Aus $|vwx| \leq p$ folgt: $vwx$ kann nicht aus a's, c's und b's bestehen. Die Form von $vwx$ entspricht also einem der beiden Fälle:
 	\begin{enumerate}
 		\item $a^ic^j$ für $i \in \{1,2,...,p+1\}$ und $j \in \{1,2,...,p\}$ mit $i+j \leq p$
@@ -110,8 +110,3 @@
 	In Fall 2.2 ist $uv^2wx^2y=a^{p+1}c^{p+k+l}b^{p-1+m} \notin L_4$, da entweder $p+1 \ngtr p+k+l$ oder falls $k=l=0:\ m\geq 1 \Rightarrow p+k+l \ngtr p-1+m$ gilt.
 	
 	Das ist ein Widerspruch zur Annahme $L_4$ sei kontextfrei. $\Rightarrow L_4$ ist nicht kontextfrei!
-	
-
-
-
-\newpage
