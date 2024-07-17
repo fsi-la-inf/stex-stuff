@@ -10,4 +10,6 @@ main.pdf
 *.blg
 *.nav
 *.snm
-out/
+out/*
+!out/index.html
+!out/styles.css
