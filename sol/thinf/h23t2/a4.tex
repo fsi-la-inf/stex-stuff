@@ -1,0 +1,30 @@
+\subsubsectionwithauthor[author={Mika Landeck},email={mika.landeck@fau.de}]{Aufgabe 4: Berechenbarkeit}
+
+\paragraph{(a)}
+	Falsch, $L$ kann auch nicht semi-entscheidbar sein.\\
+	Seien $L(M_1)=\{\}$ und $L(M_2)=\Sigma^*$ zwei von trivialen TM $M_1$ und $M_2$ entschiedene Sprachen. Dann gilt für alle formalen Sprachen $L(M_1)=\{\}\subseteq L\subseteq \Sigma^*=L(M_2)$, also z.B. auch für $L=\{c(M) |\ M \text{ ist TM und hält nicht auf } c(M)\}$. Diese Sprache ist als das Komplement zum Halteproblem jedoch bekanntermaßen nicht semi-entscheidbar.
+	
+\paragraph{(b)}
+	Falsch, $L_1 \ L_2$ ist nicht semi-entscheidbar.\\
+	Mit der Wahl $L_1=\{c(M) |\ M \text{ ist TM}\}$ und $L_2=\{c(M) |\ M \text{ ist TM und hält auf } c(M)\}$ erhält man für $L_1 \ L_2 = \{c(M) |\ M \text{ ist TM und hält auf } c(M)\}$. Dabei sind $L_1$ (reiner Synthax-Check) und $L_2$ (Selbstanwendungsproblem, Variante des klassischen Haltproblems) semi-entscheidbar, $L_1 \ L_2$ ist aber das Komplement des Selbstanwendungsproblems und kann somit nicht semi-entscheidbar sein. Sonst wäre nämlich das Selbstanwendungsproblem entscheidbar, was bekanntermaßen nicht der Fall ist.
+	
+\paragraph{(c)}
+	Wahr, $L'$ ist entscheidbar.\\
+	Eine Turing-Maschine $M'$, die $L'$ entscheidet, kann folgendermaßen konstruiert werden:
+	\begin{itemize}
+    	\item Die TM erhält als Eingabe $w = w_1w_2...w_n$ (wobei $n=|w|$).
+    	\item $M'$ simuliert als universelle TM die TM $M$, welche $L$ entscheidet, auf der Eingabe. Dabei werden der Reihe nach die Teilwörter $\varepsilon,w_1,w_1w_2,...$ untersucht, bis ein $u:=w_1...w_k$ mit $k \in \{0,1,2,...,n\}$ gefunden wurde, das von $M$ akzeptiert wird.
+    	\item $M'$ simuliert nun $M$ auf der Eingabe $v:=w_{k+1}...w_n$, sodass $w=uv$ gilt. Falls $v$ von $M$ akzeotiert wird, hält $M'$ und akzeptiert. Ansonsten wird mit dem vorherigen Schritt fortgefahren. Wurden alle möglichen Zerlegungen von $w$ in $uv$ erfolglos getestet, hält $M'$ und akzeptiert nicht.
+    \end{itemize}
+    So eine TM $M$ gibt es, da $L$ entscheidbar ist. Nach dem beschriebenen Verfahren entscheidet $M'$ die Sprache $L'$ in endlicher Zeit und es gilt $L(M')=L'$. Daher ist auch $L'$ entscheidbar.
+    
+\paragraph{(d)}
+    Wahr, $L'$ muss unentscheidbar sein.\\
+	Angenommen $L'$ wäre entscheidbar. Dann gibt es eine TM $M'$, welche $L'$ entscheidet. Daraus lässt sich eine TM $M$ konstruieren, die $L$ entscheidet:
+	\begin{itemize}
+    	\item Die TM erhält als Eingabe $w = w_1w_2...w_n$ (wobei $n=|w|$).
+    	\item $M$ simuliert als universelle TM die TM $M'$, welche $L'$ entscheidet, auf der Eingabe. Dabei werden der Reihe nach die Teilwörter $\varepsilon,w_1,w_1w_2,...$ untersucht. Sobald ein $u:=w_1...w_k$ mit $k \in \{0,1,2,...,n\}$ gefunden wurde, das von $M'$ akzeptiert wird, hält $M$ und akzeptiert.
+    	\item Wurden alle möglichen Zerlegungen von $w$ in $uv$ erfolglos getestet, hält $M$ und akzeptiert nicht.
+    \end{itemize}
+	Diese TM $M$ entscheidet $L$, was einen Widerspruch zu der Vorraussetzung darstellt, das $L$ unentscheidbar ist. Folglich muss die Annahme falsch gewesen sein und auch $L'$ ist unentscheidbar.
+	

@@ -1,0 +1,68 @@
+\subsubsectionwithauthor[author={Mika Landeck},email={mika.landeck@fau.de}]{Aufgabe 4: Entscheidbarkeit}
+
+ 
+\paragraph{(a)}
+	$L_{1}$ ist nicht entscheidbar.
+
+	Die Nicht-Entscheidbarkeit von $L_1$ wird durch eine Reduktion auf das bereits als unentscheidbar bekannte allgemeine Halteproblem $L_2$ nachgewiesen (siehe (b)). Dazu wird eine totale und berechenbare Funktion $f$ benötigt, für die $f(w) \in L_1 \Leftrightarrow w \in L_2$ gilt. Sei $f:\Sigma^*\rightarrow \Sigma^*$ definiert über:
+
+	$f(w)=\begin{cases}
+		\langle M' \rangle &\text{falls $w=\langle M \rangle$ für TM $M$}\\
+		0 &\text{sonst}
+	\end{cases}$
+
+	Dabei ist $M'$ eine TM, die $2^{|\langle N \rangle|}$ Schritte vollführt, ohne irgendetwas zu berechnen, und dann $M$ auf der Eingabe $\langle N \rangle$ simuliert.
+	
+	Die Funktion $f$ ist offensichtlich total. Außerdem lässt sich $f$ berechnen:
+	\begin{itemize}
+		\item Syntaxcheck der Eingabe auf $\langle M \rangle$
+		\item $2^{|\langle N \rangle|}$ Übergänge ohne irgendetwas zu verändern (außer den Zuständen zum zählen)
+		\item Simulieren von $M$ auf $\langle N \rangle$ (universelle Turingmaschine).
+	\end{itemize}
+
+	Es bleibt noch zu zeigen, dass $w \in L_2 \Leftrightarrow f(w) \in L_1$ gilt. Dies beweisen folgende Äquivalenzumformungen ($\forall w \in \Sigma^*$):
+	\begin{align*}
+		w \in L_2 \Longleftrightarrow\ &w = \langle M \rangle \text{ mit TM } M \text{ hält auf } \langle N \rangle \\
+		\Leftrightarrow\ &f(w) = \langle M' \rangle \text{ mit TM } M' \text{ hält auf } \langle N \rangle \text{ nach mindestens } 2^{|\langle N \rangle|} \text{ Schritten}\\
+		\Leftrightarrow\ &f(w) \in L_1
+	\end{align*}
+	Somit gilt $L_2 \leq L_1$ und da $L_2$ unentscheidbar ist, muss auch $L_1$ unentscheidbar sein.
+	
+
+\paragraph{(b)}
+	$L_{2}$ ist nicht entscheidbar.
+
+	Die Nicht-Entscheidbarkeit von $L_2$ wird durch eine Reduktion auf das bereits als unentscheidbar bekannte Halteproblem $L_{halt}=\{\langle M \rangle w | M \text{ ist TM, die auf } w \text{ hält} \}$ nachgewiesen. Dazu wird eine totale und berechenbare Funktion $f$ benötigt, für die $f(w) \in L_2 \Leftrightarrow w \in L_{halt}$ gilt. Sei $f:\Sigma^*\rightarrow \Sigma^*$ definiert über:
+
+	$f(w)=\begin{cases}
+		\langle M' \rangle &\text{falls $w=\langle M \rangle v$ für TM $M$ und $v \in \Sigma^*$}\\
+		0 &\text{sonst}
+	\end{cases}$
+
+	Dabei ist $M'$ eine TM, die auf $\langle N \rangle$ hält, genau dann wenn $M$ auf $v$ hält. $M'$ lässt sich wie folgt konstruieren:
+	\begin{itemize}
+		\item Überprüfung der Eingabe $u$. Falls $u \neq \langle N \rangle$ in Endlosschleife laufen.
+		\item Ansonsten löschen der Eingabe und schreiben von $v$ aufs Band.
+		\item Simulieren von $M$ auf $v$. Falls $M$ auf $v$ hält, hält auch $M'$.
+	\end{itemize}
+	
+	Die Funktion $f$ ist offensichtlich total. Außerdem kann $f$ ihr Bild $M'$ nach dem eben beschriebenen Vorgehen berechnen und ist somit berechenbar (löschen von $\langle M \rangle v$ und schreiben von $\langle M' \rangle$ aufs Band).
+
+	Es bleibt noch zu zeigen, dass $w \in L_{halt} \Leftrightarrow f(w) \in L_2$ gilt. Dies beweisen folgende Äquivalenzumformungen ($\forall w \in \Sigma^*$):
+	\begin{align*}
+		w \in L_{halt} \Longleftrightarrow\ &w = \langle M \rangle v \text{ mit TM } M \text{ hält auf } v \\
+		\Leftrightarrow\ &f(w) = \langle M' \rangle \text{ mit TM } M' \text{ hält auf } \langle N \rangle \\
+		\Leftrightarrow\ &f(w) \in L_2
+	\end{align*}
+
+	Somit gilt $L_{halt} \leq L_2$ und da $L_{halt}$ unentscheidbar ist, muss auch $L_2$ unentscheidbar sein.
+	
+	
+\paragraph{(c)}
+	$L_3$ ist entscheidbar.
+
+	Da $L(N)=\Sigma^*$ muss $N$ auf jedem $w \in \Sigma^*$ halten, um dieses zu akzeptieren. Folglich ist die Menge der Worte über $\Sigma$, auf denen $N$ nicht hält, die leere Menge. Man kann $L_3$ also umschreiben zu:\\
+	$L_3= \{\langle M\rangle | M\ h\ddot{a}lt\ auf\ mindestens\ einem\ w \in \varnothing \}$
+
+	Da es kein solches $w$ gibt, kann es auch kein $M$ geben, welches auf $w$ hält. Folglich ist $L_3 = \varnothing$ und somit regulär und auch entscheidbar. 
+	

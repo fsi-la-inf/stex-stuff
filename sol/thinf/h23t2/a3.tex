@@ -1,0 +1,135 @@
+\subsubsectionwithauthor[author={Mika Landeck},email={mika.landeck@fau.de}]{Aufgabe 3: Kontextfreie Grammatiken}
+
+\paragraph{(a)}
+	Die Umwandlung von G in H erfolgt in vier Schritten:
+ 
+	\textbf{1) Beseitigung von $\epsilon$-Regeln}
+
+	Alle Regeln der Form $A \rightarrow \epsilon$ werden beseitigt. Alle Produktionsregeln, die rechts ein Nichtterminal enthalten, das zuvor zu $\epsilon$ abgeleitet werden konnte, werden dafür ergänzt um eine Kopie \textit{ohne} dieses Nichtterminalsymbol.\\
+	Da das leere Wort nicht in der von H erzeugten Sprache liegen soll, muss keine weitere Regel hinzugefügt werden.
+
+	\begin{tabular}{l|l}
+		\textbf{Vorher} & \textbf{Nachher} \\
+		\hline
+		\begin{tabular}{lcl}
+		S & $\rightarrow$ & aXY            \\
+		X & $\rightarrow$ & Y $\mid$ \textcolor{red}{$\epsilon$} \\ 
+		Y & $\rightarrow$ & aS $\mid$ b         \\ 
+		\end{tabular} &
+		\begin{tabular}{lcl}
+		S  & $\rightarrow$ & aXY $\mid$ \textcolor{green}{aY}          \\
+		X  & $\rightarrow$ & Y \\ 
+		Y  & $\rightarrow$ & aS $\mid$ b         \\ 
+		\end{tabular}
+	\end{tabular}
+	
+	\textbf{2) Beseitigung von Kettenregeln}
+	
+	Jede Produktionsregel der Form A $\rightarrow$ B mit A, B $\in$ V wird als \glqq Kettenregel\grqq bezeichnet.
+	Dabei werden ggf. zunächst Zykel entfernt. Da hier keine Zykel vorliegen, muss nur noch die Regel X $\rightarrow$ Y angepasst werden. Dazu wird diese Regel entfernt und alle Regeln, deren linke Seite ein Y ist, um eine neue Regel mit X als linker Seite ergänzt.
+	
+	\begin{tabular}{l|l}
+		\textbf{Vorher} & \textbf{Nachher} \\
+		\hline
+		\begin{tabular}{lcl}
+		S  & $\rightarrow$ & aXY                \\
+		\textcolor{red}{X} & \textcolor{red}{$\rightarrow$} & \textcolor{red}{Y} \\ 
+		\textcolor{blue}{Y}  & $\rightarrow$ & aS $\mid$ b         \\ 
+		\end{tabular} &
+		\begin{tabular}{lcl}
+		S  & $\rightarrow$ & aXY                 \\
+		Y  & $\rightarrow$ & aS $\mid$ b         \\
+		\textcolor{green}{X}  & \textcolor{green}{$\rightarrow$} & \textcolor{green}{aS $\mid$ b}         \\ 
+		\end{tabular}
+	\end{tabular}
+	
+
+	\textbf{3) Ersetzen von Terminalzeichen}
+
+	Jedes Terminalzeichen $\theta$, das in Kombination mit anderen Symbolen auftritt, wird durch ein neues Nichtterminalzeichen $\Theta$ ersetzt. Zusätzlich wird die Produktionsregel $\Theta \rightarrow \theta$ ergänzt.
+
+	\begin{tabular}{l|l}
+		\textbf{Vorher} & \textbf{Nachher} \\
+		\hline
+		\begin{tabular}{lcl}
+			S  & $\rightarrow$ & \textcolor{blue}{a}XY                 \\
+			Y  & $\rightarrow$ & \textcolor{blue}{a}S $\mid$ b         \\
+			X  & $\rightarrow$ & \textcolor{blue}{a}S $\mid$ b         \\ 
+		\end{tabular} &
+		\begin{tabular}{lcl}
+			S  & $\rightarrow$ & \textcolor{green}{A}XY                 \\
+			Y  & $\rightarrow$ & \textcolor{green}{A}S $\mid$ b         \\
+			X  & $\rightarrow$ & \textcolor{green}{A}S $\mid$ b         \\ 
+			\textcolor{green}{A}  & \textcolor{green}{$\rightarrow$} & \textcolor{green}{a} \\
+		\end{tabular}
+	\end{tabular}
+	
+	\newpage 
+	\textbf{4) Beseitigung von Nichtterminalketten} 
+		
+	Alle Produktionsregeln, die in der rechten Seite mehr als zwei Nichtterminalzeichen aufweisen, werden durch einfügen zusätzlicher Nichtterminale in mehrere neue Regeln mit passender Form aufgeteilt.
+	
+	\begin{tabular}{l|l}
+		\textbf{Vorher} & \textbf{Nachher} \\
+		\hline
+		\begin{tabular}{lcl}
+			S  & $\rightarrow$ & \textcolor{blue}{AXY} \\
+			Y  & $\rightarrow$ & AS $\mid$ b         \\
+			X  & $\rightarrow$ & AS $\mid$ b         \\ 
+			A  & $\rightarrow$ & a \\
+		\end{tabular} &
+		\begin{tabular}{lcl}
+			S  & $\rightarrow$ & \textcolor{green}{AZ}  \\
+			\textcolor{green}{Z}  & \textcolor{green}{$\rightarrow$} & \textcolor{green}{XY} \\
+			Y  & $\rightarrow$ & AS $\mid$ b         \\
+			X  & $\rightarrow$ & AS $\mid$ b         \\ 
+			A  & $\rightarrow$ & a \\
+		\end{tabular}
+	\end{tabular}
+	
+	Die fertige Grammatik H in CNF, für die gilt $L(H)=L(G)\backslash \{\varepsilon \}$, sieht also folgendermaßen aus:
+	
+	H = (V, $\Sigma$, P, S) mit V = \{S, X, Y, Z, A\}, $\Sigma$ = \{a, b\} und P:
+	
+	\begin{tabular}{lcl}
+		S  & $\rightarrow$ & AZ  \\
+		Z  & $\rightarrow$ & XY \\
+		Y  & $\rightarrow$ & AS $\mid$ b \\
+		X  & $\rightarrow$ & AS $\mid$ b \\ 
+		A  & $\rightarrow$ & a \\
+	\end{tabular} \\
+
+\paragraph{(b)}
+	\textbf{Erklärung} \\
+	Zwei Einschränkungen gilt es zu beachten: CNF und $|V| \leq 5$. Außerdem darf die Grammatik einzig und allein das Wort \glqq aaaaaaaaaaaa\grqq\ erzeugen. \\
+	Eine Nichtterminal wird benötigt, um mittels der Regel $E\rightarrow a$ letztendlich die Terminale zu erzeugen.
+	Würden alle vier übrigen Variablen die Anzahl der erzeugten $a$'s mit Regeln der Form $A\rightarrow BB$ verdoppeln, würde man $2^4=16\ a$'s erhalten. Um die Anzahl zu reduzieren wird im dritten Ableitungsschritt eine Regel der Form $C\rightarrow DE$ eingebaut. So werden im vorletzten Ableitungsschritt nur die $D$'s erneut verdoppelt, während die $E$'s direkt auf Terminalsymbole abgeleitet werden. Somit werden, wie erwünscht, nur $2^3 + 2^2 = 8 + 4 = 12\ a$'s erzeugt.
+
+	Die gesuchte Grammatik ist also $G = (V, \Sigma, P, A)$ mit $V = \{A, B, C, D, E\}$ und $P$:
+	
+	\begin{tabular}{lcl}
+		A & $\rightarrow$ & BB \\
+		B & $\rightarrow$ & CC \\
+		C & $\rightarrow$ & DE \\
+		D & $\rightarrow$ & EE \\
+		E & $\rightarrow$ & a  \\
+	\end{tabular}
+	
+\paragraph{(c)}
+	Sei $G = (\Sigma, V, S, P)$ eine kontextfreie Grammatik. Wir konstruieren eine kontextfreie Grammatik $H = (\Sigma, V', S', P')$, für die $L(H) = \{ w \in L(M) \mid |w| \text{ ist gerade }\}$ gilt, wie folgt:
+
+	\begin{itemize}
+		\item $V' = \{X_g, X_u | X \in V\}$
+		\item $S' = S_g$
+		\item $P'$ enthält für alle $X\rightarrow YZ \in P$ und $X\rightarrow a \in P$ mit $X, Y, Z\in V$ und $a \in \Sigma$:
+		\begin{align*}
+			&X_g\rightarrow Y_gZ_g\\
+			&X_g\rightarrow Y_uZ_u\\
+			&X_u\rightarrow Y_gZ_u\\
+			&X_u\rightarrow Y_uZ_g\\
+			&X_u\rightarrow a
+		\end{align*}
+	\end{itemize}
+
+	\textbf{Erklärung:}\\
+	Die Variablen von $G$ werden zu je zwei Variablen in $H$, von denen jeweils eine ($X_g$) Wörter gerader Länge, und die andere ($X_u$) Wörter ungerader Länge erzeugt. Deshalb wurden auch die Regeln $X_g\rightarrow a$ weggelassen, da $|a|=1$ ungerade ist. Durch die Wahl von $S_g$ als Startvariable und die mathematischen Rechenregeln (ungerade und gerade ergibt ungerade, ungerade und ungerade ergibt gerade,\ldots) wird gewährleistet, dass von $H$ nur gerade Wörter erzeugt werden können.
