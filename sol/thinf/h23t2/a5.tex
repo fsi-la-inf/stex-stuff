@@ -1,0 +1,51 @@
+\subsubsectionwithauthor[author={Mika Landeck},email={mika.landeck@fau.de}]{Aufgabe 5: Reduktion}
+Wir geben einen deterministischen Algorithmus an, der Negierte-KNF-SAT in polynomieller Zeit entscheidet:
+\begin{enumerate}
+    \item \textbf{Eingabe}: Eine KNF-Formel \( F = \bigwedge_{i=1}^m C_i \), wobei jede Klausel \( C_i \) eine Disjunktion von Literalen ist.
+    
+    \item \textbf{Formelnegation}: Negiere die gesamte KNF-Formel \( F \) nach De Morgan (in \( O(m) \) für \( m \) Klauseln):
+	\[
+	\neg F = \neg \left( \bigwedge_{i=1}^m C_i \right) = \bigvee_{i=1}^m \neg C_i
+	\]
+	Jede negierte Klausel \( \neg C_i \) wird zu einer Konjunktion von negierten Literalen (in \( O(n) \) für \( n \) Literale in der Klausel). Somit ist \( \neg F \) eine DNF-Formel.
+    
+    \item \textbf{Erfüllbarkeit der DNF-Formel}: Man überprüfe, ob die resultierende DNF-Formel \( \neg F \) erfüllbar ist (in \( O(n) \) für \( n \) Literale in der Klausel), indem man über jede Konjunktion in der DNF-Formel iteriert (in \( O(m) \) für \( m \) Klauseln). Eine Konjunktion ist genau dann erfüllbar, wenn sie keine widersprüchlichen Literale enthält (z.B., sowohl \( x \) als auch \( \neg x \)).
+    
+    \item \textbf{Entscheidung}: Wenn mindestens eine Konjunktion in der DNF-Formel \( \neg F \) erfüllbar ist, dann ist \( \neg F \) erfüllbar. Andernfalls ist \( \neg F \) nicht erfüllbar.
+\end{enumerate}
+
+Da sowohl die Negation als auch die Erfüllbarkeitsprüfung in polynomialer Zeit durchgeführt werden können, löst dieser deterministische Algorithmus das Problem Negierte-KNF-SAT in polynomieller Zeit. Damit ist nachgewiesen, dass \underline{Negierte-KNF-SAT in P} liegt.\\
+
+Für das andere Problem wird zunächst ein NP-vollständiges Problem gewählt, auf das reduziert werden kann. Der Satz von Cook (bzw. Levin) sagt aus, dass SAT (Erfüllbarkeit allgemeiner aussagenlogischer Formeln) NP-vollständig ist. Da jede SAT-Formel in polynomialer Zeit in eine äquivalente KNF-Formel umgewandelt werden kann, ist somit auch KNF-SAT NP-vollständig.
+
+Nun wird eine polynomielle Komplexitäts-Reduktion von KNF-SAT auf KNF-Nicht-Äquivalenz durchgeführt. Dazu wird eine totale und in polynomieller Zeit berechenbare Funktion $f$ benötigt, die Probleme aus KNF-SAT auf Probleme aus KNF-Nicht-Äquivalenz abbildet:
+
+Sei $f:$ KNF-SAT $\rightarrow$ KNF-Nicht-Äquivalenz definiert über $F\mapsto f(F)=(F,F\wedge (false))$.
+
+$f$ ist offensichtlich total, da für alle F in KNF-SAT definiert. Außerdem lässt sich eine DTM konstruieren, die $f$ in polynomieller Laufzeit berechnet: Kopieren von F und Ergänzen der Konjugation mit $(false)$ (in \( O(n) \) bei Länge \( n \) der Eingabe).
+
+Es bleibt noch zu zeigen, dass $F \in $ KNF-SAT $ \Leftrightarrow f(F) \in$ KNF-Nicht-Äquivalenz gilt. Dies beweisen folgende Äquivalenzumformungen ($\forall F \in$ KNF-SAT):
+\begin{align*}
+	F \in \text{KNF-SAT} \Longleftrightarrow\ & F\text{ ist aussagenlogische Formel in KNF mit einer erfüllenden Belegung}\\
+	\Leftrightarrow\ & f(F)=(F,F\wedge (false))\text{ ist ein Paar aussagenlogischer Formeln in KNF }\\
+	& \text{und } F \text{ besitzt eine erfüllende Belegung}\\
+	\Leftrightarrow\ & f(F)=(F,F\wedge (false))\text{ ist ein Paar aussagenlogischer Formeln in KNF }\\
+	& \text{und es gibt eine Belegung, die } F \text{ erfüllt und } F\wedge (false) \text{ nicht erfüllt}\\
+	\Leftrightarrow\ & f(F)=(F,F\wedge (false))\text{ ist ein Paar aussagenlogischer Formeln in KNF }\\
+	& \text{und } F \text{ und } F\wedge (false) \text{ sind nicht äquivalent}\\
+	\Leftrightarrow\ & f(F) \in \text{KNF-Nicht-Äquivalenz}
+\end{align*}
+Da KNF-SAT NP-vollständig ist, ist also KNF-Nicht-Äquivalenz NP-hart.
+
+Um nachzuweisen, dass KNF-Nicht-Äquivalenz in NP liegt, wird ein entsprechender nichtdeterministischer Entscheider konstruiert:
+\begin{itemize}
+	\item Die NTM M' rät nichtdeterministisch eine Belegung B - falls eine Belegung existiert, welche genau eine der Formeln F und G erfüllt und die andere nicht, dann wird diese gewählt (in $O(m)$ mit m ist Anzahl der Literale).
+	\item M' überprüft, ob B die Formel F erfüllt (in $O(n)$ mit n Länge der Eingabe).
+	\item Falls JA, überprüft M', ob B die Formel G nicht erfüllt (in $O(n)$ mit n Länge der Eingabe). Andernfalls überprüft M', ob B die Formel G erfüllt (in $O(n)$ mit n Länge der Eingabe).
+	\item Falls JA, hält M' und akzeptiert. Andernfalls hält M' und akzeptiert nicht (in $O(1)$).
+\end{itemize}
+
+Der Entscheider arbeitet in polynomieller Zeit. Somit liegt \underline{KNF-Nicht-Äquivalenz} in NP und zusammen mit der NP-Härte folgt, dass das Problem \underline{NP-vollständig} ist.\\
+
+Da nach Angabe $P\neq NP$ gilt, kann \underline{Negierte-KNF-SAT nicht NP-vollständig} sein und \underline{KNF-Nicht-}
+\underline{Äquivalenz nicht in P} liegen.
