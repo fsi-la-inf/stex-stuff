@@ -1,0 +1,118 @@
+\section{Kontextfreie Sprachen}
+
+\begin{definition}[Kontextfreie Grammatik]
+	Eine Grammatik $G = (V, \Sigma, P, S)$ heißt \Index{kontextfrei}, wenn
+	alle durch $P$ induzierten Regeln von folgender Form sind:
+	\begin{equation}
+		A \rightarrow \alpha \quad A \in V, \alpha \in (V \cup \Sigma)^*
+	\end{equation}
+\end{definition}
+
+\begin{definition}[Kontextfreie Sprache]
+	Eine Sprache $L$ heißt \Index{kontextfrei}, wenn es eine kontextfreie
+	Grammatik $G$ gibt, sodass $L = L(G)$.
+\end{definition}
+
+\begin{example}
+	Die Sprache
+	\begin{equation}
+		\label{thinf:cf:lang_1}
+		L := \{a^kbc^l \in \{a,b,c\}^* \,|\, k,l \in \Nat, k \geq l \}
+	\end{equation}
+	ist kontextfrei. Dies lässt sich durch eine kontextfreie Grammatik
+	zeigen, die $L$ erzeugt:
+	\begin{align*}
+		G_L & := (V,\Sigma,P,S) \\
+		V & := \{S \} \\
+		\Sigma & := \{a,bkc \} \\
+		P & \colon \\
+		       & S \rightarrow b \,|\, aS \,|\, aSc  \\
+	\end{align*}
+
+	Ein Beweis, dass tatsächlich $L = L(G_L)$ gilt, ist noch zu führen.
+	%TODO: Beweis
+\end{example}
+
+\begin{example}
+	\label{thinf:cf:cfg_ex_1}
+	Sei $G := (\{S\},\{x,y\},P,S)$ mit folgenden Produktionen $P$:
+	\begin{align*}
+		\label{thinf:cf:cfg_ex_1:gramm}
+		S & \rightarrow yxx \,|\, xSyx \,|\, SS
+	\end{align*}
+
+	Man kann nun zeigen, dass für alle Wörter $w \in L(G)$ gilt, dass $|w|_x
+	= 2 |w|_y$.
+
+	$w \in L(G)$ bedeutet, dass
+	\begin{equation}
+		\label{thinf:cf:cfg_ex_1:derivable}
+		S \Longrightarrow^* w
+	\end{equation}
+
+	Um \eqref{thinf:cf:cfg_ex_1:derivable} klassifizieren zu können, bietet sich
+	folgende (noch zu beweisende) Hilfsaussage an:
+
+	\begin{equation}
+		\label{thinf:cf:cfg_ex_1:helper}
+		\forall w \in \{S,x,y\}^*.\, S \Longrightarrow^* w \rightarrow |w|_x
+		= 2|w|_y
+	\end{equation}
+
+	Mithilfe von \eqref{thinf:cf:cfg_ex_1:helper} lässt sich direkt für alle $w
+	\in L(G)$ folgern, dass $|w|_x = 2|w|_y$.
+
+	\begin{proof}[Beweis von \eqref{thinf:cf:cfg_ex_1:helper}]
+		Ein induktiver Beweis über das Prädikat
+		\eqref{thinf:cf:cfg_ex_1:derivable} bietet sich an.
+
+		Sei also zunächst $S \Longrightarrow^0 S$ gegeben. Es gilt:
+		\begin{equation}
+			\label{thinf:cf:cfg_ex_1:calc_1}
+			|S|_x = 0 = |S|_y
+		\end{equation}
+
+		Sei nun $S \Longrightarrow^* w' \Longrightarrow w$ gegeben, wobei
+		bereits folgende Induktionsvorraussetzung gilt:
+		\begin{equation}
+			\label{thinf:cf:cfg_ex_1:helper_iv}
+			\tag{IV}
+			|w'|_x = 2|w'|_y
+		\end{equation}
+
+		Aus $w' \Longrightarrow w$ folgt, dass $w'$ noch aus mindestens
+		einem Nichtterminal besteht, also noch ein $S$ enthält. Sei nun
+		$v$ das von diesem $S$ abgeleitete Teilwort. Wegen
+		\eqref{thinf:cf:cfg_ex_1:calc_1} ergeben sich nun folgende
+		Zusammenhänge:
+		\begin{align}
+			|w|_x & = |w'|_x + |v|_x \label{thinf:cf:cfg_ex_1:eq_1} \\
+			|w|_y & = |w'|_y + |v|_y \label{thinf:cf:cfg_ex_1:eq_2}
+		\end{align}
+
+		Nach den Produktionsregeln kann $v$ nur von einer der folgenden
+		Formen sein:
+		\begin{align*}
+			v & = yxx \\
+			v & = xSyx \\
+			v & = SS
+		\end{align*}
+
+		In allen 3 Fällen lässt sich leicht nachrechnen, dass
+		\begin{equation}
+			\label{thinf:cf:cfg_ex_1:eq_3}
+			|v|_x = 2|v|_y
+		\end{equation}
+
+		Damit ergibt sich folgende Rechnung:
+		\begin{align}
+			|w|_x
+			& = |w'|_x + |v|_x & \tag{Wegen \eqref{thinf:cf:cfg_ex_1:eq_1}} \\
+			& = 2|w'|_y + |v|_x \tag{Wegen \eqref{thinf:cf:cfg_ex_1:helper_iv}} \\
+			& = 2|w'|_y + 2|v|_y \tag{Wegen \eqref{thinf:cf:cfg_ex_1:eq_3}} \\
+			& = 2 (|w'|_y + 2|v|_y) \tag{Arithmetik} \\
+			& = 2 |w|_y \tag{Wegen \eqref{thinf:cf:cfg_ex_1:eq_2}}
+		\end{align}
+	\end{proof}
+	
+\end{example}
