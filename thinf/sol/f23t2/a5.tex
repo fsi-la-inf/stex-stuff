@@ -1,0 +1,19 @@
+\subsubsectionwithauthor[author={Mika Landeck},email={mika.landeck@fau.de}]{Aufgabe 5: Aussagen}
+\paragraph{a)}
+	Falsch.\\
+	Unabhängig von $\Sigma$ kann $L=\{\varepsilon \}$ gewählt werden. Diese Sprache wird offensichtlich durch eine DTM entschieden, die auf der leeren Eingabe hält und akzeptiert und bei nicht leerer Eingabe hält und nicht akzeptiert.
+	
+	\paragraph{b)}
+	Falsch.\\
+	Betrachte die Sprache $L=\{a^n \vert n\in \mathbb{P}\cup \{0,1\}\}$, welche wegen der Primzahleigenschaften bekanntermaßen nicht regulär ist. Allerdings ist $L^*=\{a^n \vert n\in \{\sum_{i = 0}^{\infty} a_i \vert a_i \in \mathbb{P}\cup \{0,1\}\}\}=\{a^n \vert n\in \mathbb{N}_0\}=\Sigma^*$, da alle $n \in \mathbb{N}$ als Summe von $1$en dargestellt werden können. $L^*=\Sigma^*$ ist allerdings trivialer Weise regulär.
+	
+	\paragraph{c)}
+	Richtig.\\
+	\textit{Beweis durch Widerspruch:} Sei $L$ unentscheidbar. Wir nehmen an, dass $\overline{L} \in \mathcal{NP}$. Demnach gibt es eine NTM $M$, die $\overline{L}$ in polynomieller Zeit akzeptiert. %Also gibt es auch eine DTM $M'$, die $\overline{L}$ in exponentieller Zeit akzeptiert. Darüber kann eine DTM $\overline{M'}$ konstruiert werden, welche $M'$ simuliert und lediglich akzeptieren und nicht-akzeptieren vertauscht und somit $L$ entscheidet. Widerspruch!\\
+	Darüber kann eine NTM $M'$ konstruiert werden, welche $M$ simuliert und lediglich akzeptieren und nicht-akzeptieren vertauscht. Da $M$ in polynomieller Zeit arbeitet, tut dies auch $M'$ und entscheidet somit $L$. Widerspruch!\\
+	$\Rightarrow$ Wenn $L$ unentscheidbar ist, muss $\overline{L} \notin \mathcal{NP}$ gelten.
+
+	\paragraph{d)}
+	Richtig.\\
+	Da die DTM $M$ jedes Eingabewort in konstanter Zeit entscheidet, kann ein DEA konstruiert werden, der $M$ simuliert und so $L$ akzeptiert. Dafür sind höchstens $k\cdot 3\cdot(|\Sigma|+1)\cdot |\Gamma|$ - also endlich viele - Zustände nötig (maximal $k$ Berechnungsschritte mit $3$ möglichen Zeigerbewegungen, $|\Sigma|+1$ möglichen Eingabesymbolen bzw. einem leeren Übergang und $|\Gamma|$ möglichen Werten auf dem Band).\\
+	Deshalb muss $L=L(M)$ regulär sein.

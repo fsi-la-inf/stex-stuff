@@ -1,0 +1,112 @@
+\subsubsectionwithauthor[author={Mika Landeck},email={mika.landeck@fau.de}]{Aufgabe 2: Regularität und Kontextfreiheit}
+
+\paragraph{(a)}
+	$L_1 = \{a^mb^nc^n \mid n,m \geq 1; n,m \in \mathbb{N} \} \cup \{ b^m c^n \mid n,m \geq 0; n,m \in \mathbb{N}\}$	
+	
+	\begin{quote}
+	\textbf{Pumpinglemma für reguläre Sprachen} \\
+    Ist $L_1$ regulär, so gilt: \\
+    $\exists p \geq 1: \forall z \in L, |z| \geq p:$ \\
+    $\exists u,v,w \in \Sigma^*: z = uvw$ mit
+    \begin{enumerate}
+    	\item $|v|  \geq 1$
+    	\item $|uv| \leq p$
+    	\item $\forall i \in \mathbb{N} : uv^{i}w \in L_1$
+    \end{enumerate}
+	\end{quote}
+	
+	%Betrachten wir zunächst $L_2 := L_1\ \cap\ aa^*b^*c^*$ und nehmen an $L_2$ sei regulär.
+	Nehmen wir an $L_1$ sei regulär, dann können wir das Pumpinglemma anwenden und folgern:
+	
+	Sei $p \geq 1$ die Pumpingzahl. Wir wählen $z := ab^pc^p \in L_1$ mit $|z| = 2p+1 \geq p$.\\ Damit gibt es $u,v,w \in \Sigma^*$ mit z = uvw mit den oben genannten Eigenschaften.
+	Aus $|uv| \leq p$ folgt: $uv$ ist von der Form $ab^{p-n}$ für ein $n \in \{1,2,...,p\}$ und $w$ ist von der Form $b^nc^p$.\\
+	Aus $|v|  \geq 1$ folgt: $v$ ist von der Form $ab^k$ oder $b^{k+1}$ mit $k \in \{0,1,...,p-n\}$.\\
+	Im Fall $v=ab^k$ ist $uv^0w=b^{p-k}c^p \notin L_1$, da $m=0$.\\
+	Im Fall $v=b^{k+1}$ ist $uv^0w=ab^{p-k-1}c^p \notin L_1$, da $p-k-1\neq p$.
+	
+	Das ist ein Widerspruch zur Annahme $L_1$ sei regulär. $\Rightarrow L_1$ ist nicht regulär!
+    
+    %Die erste Vereinigungsmenge von $L_1$ ist also nicht regulär. Von der zweiten könnten wir zeigen, dass sie regulär ist, indem wir einen DEA für sie angeben. Da aber die Vereinigung einer regulären Sprache mit einer kontextfreien Sprache niemals regulär sein kann, ist auch $L_1$ nicht regulär.
+    \vspace{0.3cm}
+	
+\paragraph{(b)}
+	$L_2$ ist regulär und wird von folgendem regulären Ausdruck erzeugt: $abc(abc)^* = (abc)^+$
+
+	Das lässt sich begründen, indem man sich die Reihenfolge der Buchstaben ansieht. $L_2$ ist so definiert, dass jedes Wort in der Sprache mit $a$ beginnen muss, darauf folgt ein $b$ und dann ein $c$, worauf wieder nur ein $a$ fogen kann u.s.w.. Zudem muss jedes Wort auf ein $c$ enden und mindestens einmal die Kombination $abc$ enthalten (der Rest fällt durch $n=0$ weg).
+	
+	%Michael: Man beachte, dass die mehreren gleichnamigen Zeichenwiederholungsexponenten eine fiese Blendgranate darstellen, die die Aufgabenstellung wirft, um einen zu einem Nichtregularitätsbeweis mittels Pumplemma oder Myhill-Nerode zu verlocken.
+	
+	% $L_2 = \{(abc)^nab(cab)^nc(abc)^n \mid n \geq 0; n \in \mathbb{N} \}$		
+	% 
+	% Nichtregularitätsbeweis mit Myhill-Nerode:
+	% \begin{quote}
+	% Sei $L_2$ eine formale Sprache. \\
+	% Die binäre Relation $\sim_L \subseteq \Sigma^*$ ist gegeben durch: \\
+	% $x \sim_{L_2} y :\Leftrightarrow \forall w \in \Sigma^*: xw \in L \Leftrightarrow yw \in L_2$. \\
+	% Ist $L_2$ regulär, dann ist der Index von $\sim_{L_2}$ endlich.	
+	% \end{quote}
+	% Betrachte die Wörter $(abc)^n ab(cab)^n c$ und $(abc)^k ab(cab)^k c$ mit $k < n$. \\
+	% Hängt man daran das Wort $(abc)^n$, gilt: \\
+	% $(abc)^n ab(cab)^n \textcolor{red}{(abc)^n} \in L_2 \forall n \in \mathbb{N}$ \\
+	% $(abc)^k ab(cab)^k \textcolor{red}{(abc)^n} \notin L_2 \forall n \in \mathbb{N}$, denn $k < n$
+	% 
+	% Durch paarweise gleichmäßiges Erhöhen des Zeichenwiederholungsexponenten erhält man somit unendlich viele Wörter, die sich alle paarweise nicht in derselben Äquivalenzklasse befinden.
+	% 
+	% $\Rightarrow \mid \sim_{L_2} \mid = \infty$ \\ 
+	% $\Rightarrow L_2$ ist nicht regulär. \\
+
+	\vspace{0.3cm}
+
+\paragraph{(c)}m
+	Als Nachweis für die Kontextfreiheit geben wir eine kontextfreie Grammatik an, die $L_3$ erzeugt:
+	
+	\begin{tabular}{lcl}
+		S  & $\rightarrow$ & ASE $\mid$ T $\mid$ abTde \\
+		T  & $\rightarrow$ & BTD $\mid$ c \\
+		A & $\rightarrow$ & aa \\
+		B & $\rightarrow$ & bb \\
+		E  & $\rightarrow$ & ee \\
+		D  & $\rightarrow$ & dd \\
+	\end{tabular}
+	
+	\textbf{Erklärung}: \\
+	Die Geradheit der Summe wird durch die Ableitungsregeln mit Doppel-Terminalen auf der rechten Seite gewährleistet. Somit können bei jeder Regel (außer für $c$) nur 2 Buchstaben pro Seite dazu kommen und die SUmme ist insgesamt immer ein Vielfaches von 2, also gerade.\\
+	Der Fall, dass die A's, B's und somit auch die D's, E's jeweils eine ungerade Anzahl haben, wird durch die Regel $S \rightarrow abTde$ abgedeckt.
+	\vspace{0.3cm}
+	
+\paragraph{(d)}
+	$L_4 = \{w_1c^nw_2 \mid n \geq 0, n \in \mathbb{N}, w_1,w_2 \in \{a,b\}^*, \#_a(w_1)>n \land \#_b(w_2)<n\}$	
+
+	\begin{quote}
+	\textbf{Pumpinglemma für kontextfreie Sprachen} \\
+	Ist $L_4$ eine kontextfreie Sprache, so gilt: \\
+	$\exists p \in \mathbb{N}: \forall z \in L, |z| \geq p:$ \\
+	$\exists u,v,w,x,y \in \Sigma^*: z = uvwxy$ mit
+	\begin{enumerate}
+		\item $|vx| \geq 1$
+		\item $|vwx| \leq p$
+		\item $\forall i \in \mathbb{N} : uv^{i}wx^{i}y \in L_4$
+	\end{enumerate}
+	\end{quote}
+
+	Nehmen wir an $L_4$ sei kontextfrei, dann können wir das Pumpinglemma anwenden und folgern:
+	
+	Sei $p \in \mathbb{N}$ die Pumpingzahl. Wir wählen $z := a^{p+1}c^pb^{p-1} \in L_4$ mit $|z| = 3p > p$. Somit gibt es eine Zerlegung wie im Pumping-Lemma. \\
+	Aus $|vwx| \leq p$ folgt: $vwx$ kann nicht aus a's, c's und b's bestehen. Die Form von $vwx$ entspricht also einem der beiden Fälle:
+	\begin{enumerate}
+		\item $a^ic^j$ für $i \in \{1,2,...,p+1\}$ und $j \in \{1,2,...,p\}$ mit $i+j \leq p$
+		\item $c^ib^j$ für $i \in \{1,2,...,p\}$ und $j \in \{1,2,...,p-1\}$ mit $i+j \leq p$
+	\end{enumerate}
+	Aus $|vx| \geq 1$ ergeben sich dann für $v$ und $x$ folgende Fälle (mit $k+l+m  \geq 1$):
+	\begin{itemize}
+		\item Fall 1.1: $v=a^kc^l$ und $x=c^m$
+		\item Fall 1.2: $v=a^k$ und $x=a^lc^m$
+		\item Fall 2.1: $v=c^kb^l$ und $x=b^m$
+		\item Fall 2.2: $v=c^k$ und $x=c^lb^m$
+	\end{itemize}
+	In Fall 1.1 ist $uv^0wx^0y=a^{p+1-k}c^{p-l-m}b^{p-1} \notin L_4$, da entweder $p-l-m \ngtr p-1$ oder falls $l=m=0:\ k\geq 1 \Rightarrow p+1-k \ngtr p-l-m$ gilt.\\
+	In Fall 1.2 ist $uv^0wx^0y=a^{p+1-k-l}c^{p-m}b^{p-1} \notin L_4$, da entweder $p-m \ngtr p-1$ oder falls $m=0:\ k+l\geq 1 \Rightarrow p+1-k-l \ngtr p-m$ gilt.\\
+	In Fall 2.1 ist $uv^2wx^2y=a^{p+1}c^{p+k}b^{p-1+l+m} \notin L_4$, da entweder $p+1 \ngtr p+k$ oder falls $k=0:\ l+m\geq 1 \Rightarrow p+k \ngtr p-1+l+m$ gilt.\\
+	In Fall 2.2 ist $uv^2wx^2y=a^{p+1}c^{p+k+l}b^{p-1+m} \notin L_4$, da entweder $p+1 \ngtr p+k+l$ oder falls $k=l=0:\ m\geq 1 \Rightarrow p+k+l \ngtr p-1+m$ gilt.
+	
+	Das ist ein Widerspruch zur Annahme $L_4$ sei kontextfrei. $\Rightarrow L_4$ ist nicht kontextfrei!
