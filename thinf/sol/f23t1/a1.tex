@@ -41,7 +41,66 @@
 	\vspace{0.3cm}
 	
 	%\newpage
-\paragraph{(c)}m 
+\paragraph{(c)}
+\textbf{Übergangstabelle}
+	
+	\begin{tabular}{|c|c|c|c|}
+		\hline
+		\textbf{Zustand}  & \textbf{a-Übergang} & \textbf{b-Übergang} & \textbf{$\varepsilon$-Übergang} \\
+		\hline
+		1                 & 2                   & 1                   & 4 \\
+		\hline
+		2                 & 3                   & $\varnothing$       & $\varnothing$ \\
+		\hline
+		3                 & 1                   & 2                   & 1 \\
+		\hline
+		4                 & $\varnothing$       & 3                   & $\varnothing$ \\
+		\hline
+	\end{tabular}
+	
+	Aufgrund der $\varepsilon$-Übergänge betrachtet man jeweils den Funktionsabschluss der Zustände. Dies ist die Menge der von einem Zustand aus durch $\varepsilon$-Übergänge erreichbaren Zustände im Automaten. 
+
+	\textbf{$\varepsilon$-Funktionsabschlusstabelle}
+		
+	\begin{tabular}{|c|c|}
+		\hline
+		\textbf{Zustand}  & \textbf{Funktionsabschluss} \\
+		\hline
+		1                 & \{1,4\} \\
+		\hline
+		2                 & \{2\} \\
+		\hline
+		3                 & \{1,3,4\}  \\
+		\hline
+		4                 & \{4\} \\
+		\hline
+	\end{tabular}
+
+	Anstatt der Zustände selbst benutzt man nun den jeweilgen Funktionsabschluss für die Potenzmengenkonstruktion, da die $\varepsilon$-Übergänge ja jederzeit zwischengeschaltet werden können.
+	
+	\textbf{Pontenzmengenkonstruktionstabelle}
+	
+	\begin{tabular}{|c|c|c|c|}
+		\hline
+		\textbf{Zustand} & \textbf{a-Übergang} & \textbf{b-Übergang} & \textbf{Endzustand?} \\
+		\hline
+		\{1,4\}     & \{2\}       & \{1,3,4\}         & Ja \\
+		\hline
+		\{2\}       & \{1,3,4\}   & \{$\varnothing$\} &    \\
+		\hline
+		\{1,3,4\}   & \{1,2,4\}   & \{1,2,3,4\}       & Ja \\
+		\hline
+		\{1,2,4\}   & \{1,2,3,4\} & \{1,3,4\}         & Ja \\
+		\hline
+		\{1,2,3,4\} & \{1,2,3,4\} & \{1,2,3,4\}       & Ja \\
+		\hline
+		\{$\varnothing$\}       & \{$\varnothing$\}   & \{$\varnothing$\} &    \\
+		\hline
+	\end{tabular}	
+	
+	\textbf{Fertiger DEA} \\
+	
+	\includegraphics[scale=0.5]{NEA-DEA}
 	\textbf{Übergangstabelle}
 	
 	\begin{tabular}{|c|c|c|c|}
