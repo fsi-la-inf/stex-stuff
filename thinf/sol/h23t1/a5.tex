@@ -1,0 +1,76 @@
+\subsectionwithauthor[author={Max Ole
+Elliger},email={ole.elliger@fau.de}]{Aufgabe 5 (Komplexitätstheorie)}
+
+\subsubsection{Teilaufgabe a)}
+
+Man stelle sich einen (gezeichneten) sternförmigen Graphen mit einem Zentrum
+sowie 4 Spitzen vor.
+
+\subsubsection{Teilaufgabe b)}
+
+\paragraph{Beinahe-3-Färbung ist NP-schwer}
+Dies zeigt man durch Reduktion auf 3-Färbung. Die Reduktionsfunktion $f$ ist wie
+folgt definiert:
+\begin{enumerate}
+	\item
+		Sei $(V,E)$ eine Instanz für 3-Färbung.
+	\item
+		Bestimme zunächst $v_1,v_2 \in V$ mit $(v_1,v_2) \notin E$.
+	\item
+		Gib folgenden Graphen als Instanz für Beinahe-3-Färbung zurück:
+		$(V,E')$ mit $E' := E \cup \{(v_1,v_2)\}$
+\end{enumerate}
+
+Wir zeigen nun, dass es sich bei $f$ tatsächlich um eine Reduktionsfunktion
+handelt:
+
+\begin{itemize}
+	\item
+		$f$ ist auf jede mögliche Eingabeinstanz definiert, also total.
+	\item
+		$f$ ist in polynomieller Zeit berechenbar:
+		\begin{enumerate}
+			\item
+				Die Bestimmung von $v_1,v_2$ ist in
+				$O(V^2)$ möglich.
+			\item
+				Die Rückgabe von $(V,E')$ ist in konstanter Zeit
+				möglich.
+		\end{enumerate}
+	\item
+		$f$ verhält sich korrekt. Sei dazu $(V,E)$ 3-färbbar.
+		Offensichtlich kann dann eine Kante hinzugefügt werden, sodass
+		$(V,E)$ immerhin noch beinahe 3-färbbar ist. Sei andersherum
+		$(V,E)$ nicht 3-färbbar, dann gibt es mindestens eine Kante
+		$(f_1,f_2)$, sodass $f_1$ und $f_2$ gleich eingefärbt sind.
+		Durch das Hinzufügen einer zusätzlichen Kante ist der Graph noch
+		schwieriger 3-färbbar, womit es mindestens zwei Kanten mit
+		gleicher Färbung gibt. Damit ist $f(V,E)$ auch nicht beinahe
+		3-färbbar.
+		%TODO Das Argument hakt noch etwas. Eventuell fehlt auch noch
+		%ein Element in der Konstruktion. Ideen willkommen!
+\end{itemize}
+Da 3-Färbung NP-schwer ist, ist wegen dieser Reduktion auch Beinahe-3-Färbung
+NP-schwer.
+\par
+
+\paragraph{Beinahe-3-Färbung ist in NP}
+Ein nichtdeterministischer Algorithmus könnte wie folgt vorgehen:
+\begin{enumerate}
+	\item
+		Färbe zunächst jeden Knoten nicht-deterministisch ein.
+		($O(|V|)$)
+	\item
+		Initialisiere einen Zähler $c := 0$. ($O(1)$)
+	\item
+		Überprüfe nun für jede Kante $(v_1,v_2) \in E$, ob sich die
+		Farben von $v_1$ und $v_2$ unterscheiden. Falls ja, mache mit
+		der nächsten Kante weiter. Falls nein, setze $c:= c + 1$.
+		Insgesamt benötigt dieser Schritt $O(|E|)$ Schritte.
+	\item
+		Falls $c < 2$, ist der Graph beinahe 3-färbbar, ansonsten nicht.
+		Diese Überprüfung ist in $O(1)$ möglich.
+
+\end{enumerate}
+Eine Implementierung ist also in $O(|V|+|E|)$ möglich. Folglich liegt
+Beinahe-3-Färbung in NP.
